@@ -1,0 +1,12 @@
+services:
+    db:
+        image: mariadb:11
+        ports:
+            - "3306:3306"
+        environment:
+            MARIADB_ROOT_PASSWORD: rootpassword
+            MARIADB_DATABASE: portfolio
+    cache:
+        image: valkey/valkey:alpine3.22
+        ports:
+            - "6379:6379"
