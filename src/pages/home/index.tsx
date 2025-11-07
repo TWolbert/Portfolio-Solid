@@ -14,7 +14,7 @@ export default function Home() {
           class="border rounded-lg px-2 border-gray-900"
           onClick={() => setCount(count() - 1)}
         >
-          s -
+          -
         </button>
 
         <output class="p-10px">Count: {count()}</output>

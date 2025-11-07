@@ -3,13 +3,23 @@ import { redis } from "bun";
 import { Elysia, file } from "elysia";
 import fs from "fs/promises";
 import { join, resolve } from "path";
+import { InitialiseDB } from "./database";
+
+if (!process.env.MYSQL_URL) {
+  throw new Error("DATABASE_URL not set");
+}
+
+if (!process.env.REDIS_URL) {
+  throw new Error("REDIS_URL not set");
+}
+
+await InitialiseDB();
 
 const root = resolve(process.cwd(), "api/public");
 
 const app = new Elysia();
 
 app
-
   .get("/", async () => {
     const html = await fs.readFile(join(root, "index.html"), "utf8");
     return new Response(html, {
