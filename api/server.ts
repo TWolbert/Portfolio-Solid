@@ -36,6 +36,8 @@ console.log(
 
 export { app };
 
+const index = await file(`${root}/index.html`);
+
 async function serveSPA() {
-  return await file(`${root}/index.html`);
+  return index;
 }
