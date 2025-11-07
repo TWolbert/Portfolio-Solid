@@ -4,7 +4,7 @@ import { api } from "../../../utils/fetch";
 const getApi = query(async () => await api.get("cache").text(), "getApi");
 
 const ApiTest = () => {
-    return createAsync(() => getApi());
+	return createAsync(() => getApi());
 };
 
 export default ApiTest;
