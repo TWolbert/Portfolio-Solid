@@ -28,3 +28,4 @@ gitignore
 Thumbs.db
 
 api/public/*
+!api/public/favicon.ico
