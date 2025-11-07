@@ -3,14 +3,17 @@ import { defineConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
 
 export default defineConfig({
-	plugins: [devtools(), solidPlugin()],
-	server: {
-		port: 8000,
-		proxy: {
-			"/api": "http://localhost:3000",
-		},
-	},
-	build: {
-		target: "esnext",
-	},
+  plugins: [devtools(), solidPlugin()],
+  server: {
+    port: 8000,
+    proxy: {
+      "/api": "http://localhost:3000",
+    },
+  },
+  base: "./",
+  build: {
+    target: "esnext",
+    outDir: "api/public",
+    sourcemap: true,
+  },
 });
