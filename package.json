@@ -22,11 +22,13 @@
     "vite": "^7.1.4",
     "vite-plugin-image-optimizer": "^2.0.3",
     "vite-plugin-solid": "^2.11.8",
+    "vite-plugin-solid-svg": "^0.8.1",
     "vsgo": "^0.0.4"
   },
   "dependencies": {
     "@corvu/accordion": "^0.2.5",
     "@solidjs/router": "^0.15.1",
+    "bootstrap-icons": "^1.13.1",
     "concurrently": "^9.2.1",
     "elysia": "^1.4.15",
     "ky": "^1.14.0",
