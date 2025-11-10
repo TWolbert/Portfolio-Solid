@@ -18,7 +18,7 @@ services:
     environment:
       - NODE_ENV=production
     ports:
-      - "3000:3000"
+      - "3012:3000"
 
   cache:
     image: valkey/valkey:alpine3.22
