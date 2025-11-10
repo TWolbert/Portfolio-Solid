@@ -1,7 +1,6 @@
 import { redis } from "bun";
 import { Elysia, file } from "elysia";
-import fs from "fs/promises";
-import { join, resolve } from "path";
+import { resolve } from "path";
 import { InitialiseDB } from "./database";
 
 if (!process.env.MYSQL_URL) {
@@ -10,6 +9,8 @@ if (!process.env.MYSQL_URL) {
 
 if (!process.env.REDIS_URL) {
   throw new Error("REDIS_URL not set");
+} else {
+  console.log(process.env.REDIS_URL);
 }
 
 await InitialiseDB();

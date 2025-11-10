@@ -1,14 +1,6 @@
 import Accordion from "@corvu/accordion";
-import { A, Navigate, useNavigate } from "@solidjs/router";
-import {
-  type Component,
-  createEffect,
-  createSignal,
-  type JSXElement,
-} from "solid-js";
-import { Portal } from "solid-js/web";
-import { string } from "zod/v3";
-import { NavLink } from "@/app";
+import { A, useNavigate } from "@solidjs/router";
+import { type Component, createEffect, type JSXElement } from "solid-js";
 import { setStore } from "../state/store";
 
 export default function Home() {
@@ -323,7 +315,7 @@ export const InterestCard: Component<{
   return (
     <Accordion.Item>
       <h1>
-        <Accordion.Trigger class="flex gap-2 items-center bg-white w-full p-3 rounded-xl shadow cursor-pointer hover:bg-zinc-50 transition duration-100">
+        <Accordion.Trigger class="flex gap-2 items-center bg-white w-full p-3 rounded-xl shadow cursor-pointer hover:bg-zinc-50 transition active:scale-95 duration-100">
           <img
             src={props.src}
             class="size-8 object-contain border rounded-xl p-1 shadow bg-white"
@@ -335,7 +327,7 @@ export const InterestCard: Component<{
       {/* Add animation classes and overflow handling like component 1 */}
       <Accordion.Content class="overflow-hidden data-expanded:animate-expand data-collapsed:animate-collapse bg-white p-3 rounded-xl shadow">
         {props.content}
-        <Accordion.Trigger class="bg-blue-500 text-white font-heading px-3 py-2 rounded-xl mt-2 flex items-center gap-2">
+        <Accordion.Trigger class="bg-blue-500 text-white font-heading px-3 py-2 hover:bg-blue-600 active:scale-95 rounded-xl mt-2 flex items-center gap-2">
           <i class="bi bi-x-lg" />
           <span>Close {props.coverText}</span>
         </Accordion.Trigger>
