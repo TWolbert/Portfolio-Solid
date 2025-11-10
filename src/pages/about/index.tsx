@@ -1,25 +1,27 @@
 import { createEffect, Suspense } from "solid-js";
+import Loader from "../../components/loadingSpinner";
+import { setStore } from "../state/store";
 import ApiTest from "./data";
 
 export default function About() {
-	const name = ApiTest();
+  const name = ApiTest();
 
-	createEffect(() => {
-		console.log(name());
-	});
+  createEffect(() => {
+    setStore("pageTite", "About");
+  });
 
-	return (
-		<section class="bg-pink-100 text-gray-700 p-8">
-			<h1 class="text-2xl font-bold">About</h1>
+  return (
+    <section class="bg-pink-100 text-gray-700 p-8">
+      <h1 class="text-2xl font-bold">About</h1>
 
-			<p class="mt-4">A page all about this website.</p>
+      <p class="mt-4">A page all about this website.</p>
 
-			<p>
-				<span>We love</span>
-				<Suspense fallback={<span>...</span>}>
-					<span>&nbsp;{name()}</span>
-				</Suspense>
-			</p>
-		</section>
-	);
+      <p>
+        <span>We love</span>
+        <Suspense fallback={<Loader class="ml-2" variant="dots" />}>
+          <span>&nbsp;{name()}</span>
+        </Suspense>
+      </p>
+    </section>
+  );
 }

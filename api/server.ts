@@ -23,7 +23,13 @@ app
   .get("*", async ({ path }: { path: string }) =>
     !path.includes(".") ? await serveSPA() : file(`${root}${path}`),
   )
-  .get("/api/cache", () => {
+  .post("/api/contact", async (ctx) => {
+    return {
+      message: "Your message has been received!",
+    };
+  })
+  .get("/api/cache", async () => {
+    await wait(500);
     redis.set("test", new Date().toString());
     return redis.get("test");
   });
@@ -33,6 +39,10 @@ app.listen(3000);
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
 );
+
+function wait(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 export { app };
 

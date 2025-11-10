@@ -1,9 +1,26 @@
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import devtools from "solid-devtools/vite";
 import { defineConfig } from "vite";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import solidPlugin from "vite-plugin-solid";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export default defineConfig({
-  plugins: [devtools(), solidPlugin()],
+  plugins: [
+    devtools(),
+    solidPlugin(),
+    ViteImageOptimizer({
+      png: {
+        quality: 80,
+      },
+      jpg: {
+        quality: 80,
+      },
+    }),
+  ],
   server: {
     port: 8000,
     proxy: {
@@ -14,6 +31,11 @@ export default defineConfig({
   build: {
     target: "esnext",
     outDir: "api/public",
-    sourcemap: true,
+    sourcemap: false,
+  },
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "./src"),
+    },
   },
 });
