@@ -18,16 +18,23 @@ export default function ThisPortfolio() {
         <h1 class="text-3xl font-heading mb-4">This Portfolio</h1>
 
         <p class="text-lg text-zinc-700 mb-6">
-          A modern, high-performance portfolio website built with SolidJS, ElysiaJS, and server-side rendering.
-          The website you're currently viewing, showcasing projects and technical writing.
+          A modern, high-performance portfolio website built with SolidJS,
+          ElysiaJS, and a lightning fast SPA. The website you're currently
+          viewing, showcasing projects and technical writing.
         </p>
 
         <h2 class="text-2xl font-heading mb-3">Overview</h2>
         <p class="text-zinc-700 mb-4">
-          This portfolio was built as a platform to showcase projects, share technical insights through blog posts, and demonstrate modern web development practices.
-          The architecture leverages SolidJS for reactive UI rendering with minimal overhead, ElysiaJS for a blazingly fast API backend, and server-side rendering (SSR) for optimal performance and SEO.
-          Developed entirely on Artix Linux using Zed editor, the project emphasizes performance, clean code, and modern development workflows.
-          The entire stack runs in a containerized environment using Docker, with MariaDB for persistent data and Valkey (Redis fork) for caching and session management.
+          This portfolio was built as a platform to showcase projects, share
+          technical insights through blog posts, and demonstrate modern web
+          development practices. The architecture leverages SolidJS for reactive
+          UI rendering with minimal overhead, ElysiaJS for a blazingly fast API
+          backend, and a Single Page APP (SPA) for optimal performance.
+          Developed entirely on Artix Linux using Zed editor, the project
+          emphasizes performance, clean code, and modern development workflows.
+          The entire stack runs in a containerized environment using Docker,
+          with MariaDB for persistent data and Valkey (Redis fork) for caching
+          and session management.
         </p>
 
         <h2 class="text-2xl font-heading mb-3">Technologies Used</h2>
@@ -51,56 +58,82 @@ export default function ThisPortfolio() {
 
         <h2 class="text-2xl font-heading mb-3">Key Features</h2>
         <ul class="list-disc list-inside text-zinc-700 mb-4 space-y-2">
-          <li>Server-Side Rendering (SSR) with SolidJS for optimal performance and SEO</li>
+          <li>SolidJS SPA for best client experience</li>
           <li>ElysiaJS backend API providing ultra-fast response times</li>
           <li>Tailwind CSS v4 for modern, utility-first styling</li>
-          <li>Fully containerized development and production environment with Docker</li>
-          <li>Valkey (Redis fork) for high-performance caching and session storage</li>
+          <li>
+            Fully containerized development and production environment with
+            Docker
+          </li>
+          <li>
+            Valkey (Redis fork) for high-performance caching and session storage
+          </li>
           <li>MariaDB for reliable persistent data storage</li>
           <li>Image optimization pipeline using Sharp and Vite plugins</li>
-          <li>Code quality enforcement with Biome for formatting and linting</li>
+          <li>
+            Code quality enforcement with Biome for formatting and linting
+          </li>
           <li>Type-safe routing with SolidJS Router and Zod validation</li>
           <li>Responsive design optimized for all device sizes</li>
         </ul>
 
         <h2 class="text-2xl font-heading mb-3">Development Process</h2>
         <p class="text-zinc-700 mb-4">
-          The development process prioritized performance and developer experience from the start.
-          SolidJS was chosen for its fine-grained reactivity and minimal runtime overhead compared to traditional virtual DOM frameworks.
-          ElysiaJS powers the backend, providing type-safe routing with Zod validation and exceptional performance thanks to Bun's optimized runtime.
-          The build pipeline uses Vite for fast hot module replacement during development and optimized production builds.
-          Server-side rendering ensures that pages are fully rendered on the server, improving initial load times and SEO while maintaining the interactive experience of a single-page application.
-          All development was done on Artix Linux using Zed editor, emphasizing a minimal, focused development environment.
+          The development process prioritized performance and developer
+          experience from the start. SolidJS was chosen for its fine-grained
+          reactivity and minimal runtime overhead compared to traditional
+          virtual DOM frameworks. ElysiaJS powers the backend, providing
+          type-safe routing with Zod validation and exceptional performance
+          thanks to Bun's optimized runtime. The build pipeline uses Vite for
+          fast hot module replacement during development and optimized
+          production builds. All development was done on Artix Linux using Zed
+          editor, emphasizing a minimal, focused development environment.
         </p>
 
         <h2 class="text-2xl font-heading mb-3">Challenges & Solutions</h2>
         <p class="text-zinc-700 mb-4">
-          One significant challenge was implementing SSR with SolidJS while maintaining a clean separation between client and server code.
-          This was solved by creating dedicated entry points (<code class="bg-zinc-100 px-2 py-1 rounded">entry-client.tsx</code> and <code class="bg-zinc-100 px-2 py-1 rounded">entry-server.tsx</code>) that handle hydration and server rendering respectively.
-          Integrating ElysiaJS as the API backend while serving SSR content required careful routing configuration to ensure API endpoints and page routes didn't conflict.
-          Image optimization presented another challenge, solved by implementing a multi-stage pipeline using Sharp and Vite plugins that automatically compresses and optimizes images during the build process.
-          Balancing modern Tailwind CSS v4 features with browser compatibility required testing across multiple environments, ultimately resulting in a design that works seamlessly everywhere while leveraging cutting-edge CSS features.
+          Image optimization presented a challenge, solved by implementing a
+          multi-stage pipeline using Sharp and Vite plugins that automatically
+          compresses and optimizes images during the build process. Balancing
+          modern Tailwind CSS v4 features with browser compatibility required
+          testing across multiple environments, ultimately resulting in a design
+          that works seamlessly everywhere while leveraging cutting-edge CSS
+          features.
         </p>
 
         <h2 class="text-2xl font-heading mb-3">Design Decisions</h2>
         <p class="text-zinc-700 mb-4">
-          The technology choices were deliberate and purpose-driven. SolidJS was selected over React or Vue for its superior performance characteristics and fine-grained reactivity system.
-          ElysiaJS was chosen for the backend due to its type safety, speed, and modern API design that feels natural when working with TypeScript.
-          Bun serves as both the package manager and runtime, providing significantly faster installation times and execution compared to Node.js.
-          Tailwind CSS v4 enables rapid UI development with utility classes while maintaining consistency across the application.
-          The containerized architecture using Docker ensures development-production parity and simplifies deployment.
-          MariaDB and Valkey provide a robust data layer, with MariaDB handling persistent storage and Valkey offering high-performance caching.
-          The decision to develop on Artix Linux using Zed reflects a commitment to open-source tools and lightweight, efficient development environments.
-          SSR was implemented to ensure the best possible user experience, with fast initial page loads and excellent SEO characteristics, while still delivering the interactivity users expect from modern web applications.
+          The technology choices were deliberate and purpose-driven. SolidJS was
+          selected over React or Vue for its superior performance
+          characteristics and fine-grained reactivity system. ElysiaJS was
+          chosen for the backend due to its type safety, speed, and modern API
+          design that feels natural when working with TypeScript. Bun serves as
+          both the package manager and runtime, providing significantly faster
+          installation times and execution compared to Node.js. Tailwind CSS v4
+          enables rapid UI development with utility classes while maintaining
+          consistency across the application. The containerized architecture
+          using Docker ensures development-production parity and simplifies
+          deployment. MariaDB and Valkey provide a robust data layer, with
+          MariaDB handling persistent storage and Valkey offering
+          high-performance caching. The decision to develop on Artix Linux using
+          Zed reflects a commitment to open-source tools and lightweight,
+          efficient development environments.
         </p>
 
         <h2 class="text-2xl font-heading mb-3">Architecture Highlights</h2>
         <p class="text-zinc-700 mb-4">
-          The architecture follows a clean separation of concerns with the frontend built in SolidJS and served via SSR, while the backend API runs on ElysiaJS.
-          API routes are prefixed and clearly separated from page routes, preventing conflicts and maintaining clarity.
-          Static assets are optimized during build time and served efficiently in production.
-          The development workflow uses <code class="bg-zinc-100 px-2 py-1 rounded">concurrently</code> to run both Vite's dev server and the Bun API server simultaneously, providing fast hot-reload for frontend changes and automatic restart for backend changes.
-          Code quality is maintained through Biome, which handles both formatting and linting with superior performance compared to traditional tools like ESLint and Prettier.
+          The architecture follows a clean separation of concerns with the
+          frontend built in SolidJS and served as an SPA, while the backend API
+          runs on ElysiaJS. API routes are prefixed and clearly separated from
+          page routes, preventing conflicts and maintaining clarity. Static
+          assets are optimized during build time and served efficiently in
+          production. The development workflow uses{" "}
+          <code class="bg-zinc-100 px-2 py-1 rounded">concurrently</code> to run
+          both Vite's dev server and the Bun API server simultaneously,
+          providing fast hot-reload for frontend changes and automatic restart
+          for backend changes. Code quality is maintained through Biome, which
+          handles both formatting and linting with superior performance compared
+          to traditional tools like ESLint and Prettier.
         </p>
       </div>
     </section>
