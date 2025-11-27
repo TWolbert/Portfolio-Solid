@@ -66,62 +66,62 @@ export default function Home() {
                         <div class="absolute size-16 bg-blue-300 blur-xl bottom-20 right-20" />
                         <div class="absolute size-16 bg-blue-600 blur-xl left-10 bottom-20" />
                         <LogoBadge
-                            src="laravel.png"
+                            src="/laravel.png"
                             url="https://laravel.com"
                         />
-                        <LogoBadge src="php.png" url="https://www.php.net" />
-                        <LogoBadge src="react.svg" url="https://react.dev" />
+                        <LogoBadge src="/php.png" url="https://www.php.net" />
+                        <LogoBadge src="/react.svg" url="https://react.dev" />
                         <LogoBadge
-                            src="typescript.png"
-                            hoverSrc="javascript.png"
+                            src="/typescript.png"
+                            hoverSrc="/javascript.png"
                             url="https://www.typescriptlang.org"
                         />
                         <LogoBadge
-                            src="bun.svg"
-                            hoverSrc="node.svg"
+                            src="/bun.svg"
+                            hoverSrc="/node.svg"
                             url="https://bun.sh"
                         />
                         <LogoBadge
-                            src="docker.png"
+                            src="/docker.png"
                             url="https://www.docker.com"
                         />
                         <LogoBadge
-                            src="tailwindcss.png"
-                            hoverSrc="css.png"
+                            src="/tailwindcss.png"
+                            hoverSrc="/css.png"
                             url="https://tailwindcss.com"
                         />
                         <LogoBadge
-                            src="solid.svg"
+                            src="/solid.svg"
                             url="https://www.solidjs.com"
                         />
                         <LogoBadge
-                            src="csharp.png"
+                            src="/csharp.png"
                             url="https://learn.microsoft.com/dotnet/csharp/"
                         />
                         <LogoBadge
-                            src="elysia.svg"
+                            src="/elysia.svg"
                             url="https://elysiajs.com"
                         />
                         <LogoBadge
-                            src="caddy.png"
-                            hoverSrc="nginx.png"
+                            src="/caddy.png"
+                            hoverSrc="/nginx.png"
                             url="https://caddyserver.com"
                         />
-                        <LogoBadge src="nextjs.png" url="https://nextjs.org" />
+                        <LogoBadge src="/nextjs.png" url="https://nextjs.org" />
                         <LogoBadge
-                            src="mariadb.png"
-                            hoverSrc="mysql.png"
+                            src="/mariadb.png"
+                            hoverSrc="/mysql.png"
                             url="https://mariadb.org"
                         />
                         <LogoBadge
-                            src="redis.svg"
-                            hoverSrc="valkey.png"
+                            src="/redis.svg"
+                            hoverSrc="/valkey.png"
                             url="https://redis.io"
                         />
-                        <LogoBadge src="coolify.png" url="https://coolify.io" />
+                        <LogoBadge src="/coolify.png" url="https://coolify.io" />
                         <LogoBadge
-                            src="linux.png"
-                            hoverSrc="arch.png"
+                            src="/linux.png"
+                            hoverSrc="/arch.png"
                             url="https://www.kernel.org"
                         />
                     </div>
@@ -143,16 +143,16 @@ export default function Home() {
                             name="Goed. Email"
                             imageSrc="/goed-slogan.png"
                             logoIcons={[
-                                "laravel.png",
-                                "php.png",
-                                "tailwindcss.png",
-                                "valkey.png",
-                                "mariadb.png",
-                                "docker.png",
-                                "caddy.png",
-                                "bun.svg",
-                                "composer.jpg",
-                                "cerebras-small.png",
+                                "/laravel.png",
+                                "/php.png",
+                                "/tailwindcss.png",
+                                "/valkey.png",
+                                "/mariadb.png",
+                                "/docker.png",
+                                "/caddy.png",
+                                "/bun.svg",
+                                "/composer.jpg",
+                                "/cerebras-small.png",
                             ]}
                             shortText="Your next e-mail client. Designed with performance in mind, encrypted by default."
                         />
@@ -160,7 +160,7 @@ export default function Home() {
                             href="/projects/cerebras-php"
                             name="Cerebras PHP"
                             imageSrc="/cerebras.png"
-                            logoIcons={["php.png", "composer.jpg"]}
+                            logoIcons={["/php.png", "/composer.jpg"]}
                             shortText="An open-source custom PHP adapter for the Cerebras fast inference platform."
                         />
                         <ProjectCard
@@ -168,13 +168,13 @@ export default function Home() {
                             name="This portfolio"
                             imageSrc="/codescreenshot.png"
                             logoIcons={[
-                                "elysia.svg",
-                                "solid.svg",
-                                "typescript.png",
-                                "mariadb.png",
-                                "valkey.png",
-                                "zed.png",
-                                "artix.png",
+                                "/elysia.svg",
+                                "/solid.svg",
+                                "/typescript.png",
+                                "/mariadb.png",
+                                "/valkey.png",
+                                "/zed.png",
+                                "/artix.png",
                             ]}
                             shortText="Pictured is some code from this website"
                         />
@@ -184,12 +184,12 @@ export default function Home() {
                             imageSizing="object-cover"
                             imageSrc="/kerstzwolle.png"
                             logoIcons={[
-                                "laravel.png",
-                                "mariadb.png",
-                                "lando.svg",
-                                "php.png",
-                                "javascript.png",
-                                "codex.png",
+                                "/laravel.png",
+                                "/mariadb.png",
+                                "/lando.svg",
+                                "/php.png",
+                                "/javascript.png",
+                                "/codex.png",
                             ]}
                             shortText="A website for a volunteer team that makes christmas boxes for households in Zwolle, the Netherlands"
                         />
@@ -199,10 +199,10 @@ export default function Home() {
                             imageSizing="object-cover"
                             imageSrc="/runcloud.jpg"
                             logoIcons={[
-                                "mysql.png",
-                                "plesk.png",
-                                "runcloudlogo.png",
-                                "phpmyadmin.png",
+                                "/mysql.png",
+                                "/plesk.png",
+                                "/runcloudlogo.png",
+                                "/phpmyadmin.png",
                             ]}
                             shortText="Worked on migrating a bunch of websites from their old Plesk-based environment to a new environment on RunCloud and Hetzner"
                         />
@@ -212,12 +212,12 @@ export default function Home() {
                             imageSrc="/dekenner.png"
                             imageSizing="object-cover"
                             logoIcons={[
-                                "laravel.png",
-                                "mariadb.png",
-                                "lando.svg",
-                                "php.png",
-                                "javascript.png",
-                                "codex.png",
+                                "/laravel.png",
+                                "/mariadb.png",
+                                "/lando.svg",
+                                "/php.png",
+                                "/javascript.png",
+                                "/codex.png",
                             ]}
                             shortText="A website where you can put together a team, and compete against other participants to see if your team performend the best."
                         />
@@ -286,7 +286,7 @@ export default function Home() {
                                         extensions for theming, language
                                         servers, icons and more
                                         <img
-                                            src="zed-extensions.png"
+                                            src="/zed-extensions.png"
                                             class="rounded-md shadow"
                                         />
                                         <br />
@@ -302,7 +302,7 @@ export default function Home() {
                                         searching what I want to do and more
                                         time actually doing it
                                         <img
-                                            src="zed-terminal.png"
+                                            src="/zed-terminal.png"
                                             class="rounded-md shadow"
                                         />
                                     </>
@@ -360,7 +360,7 @@ export default function Home() {
                                         Below a screenhshot of how I customised
                                         my Hyprland environment
                                         <img
-                                            src="artix-screenshot.png"
+                                            src="/artix-screenshot.png"
                                             class="rounded-md shadow"
                                         />
                                     </>
