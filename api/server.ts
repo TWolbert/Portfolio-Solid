@@ -36,12 +36,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const root = resolve(process.cwd(), "api/public");
 
-const app = new Elysia()
-  .use(cookie())
-  .use(staticPlugin({
+const app = new Elysia().use(cookie()).use(
+  staticPlugin({
     assets: root,
     prefix: "/",
-  }));
+  }),
+);
 
 app
   .get(
@@ -215,11 +215,10 @@ function wait(ms: number): Promise<void> {
 }
 
 export { app };
+const indexPath = resolve(root, "index.html");
+const template = await readFile(indexPath, "utf-8");
 
 async function serveSPA(url: string) {
-  const indexPath = resolve(root, "index.html");
-  const template = await readFile(indexPath, "utf-8");
-
   return new Response(template, {
     headers: {
       "Content-Type": "text/html",
