@@ -9,7 +9,7 @@ export default function GoedEmail() {
 
   return (
     <>
-      <CustomNavIcon href="https://goed.email" src="/goed.png" />
+      <CustomNavIcon href="https://getgoed.com" src="/goed.png" />
       <section class="xl:px-[20%] px-3 py-8">
         <div class="bg-white rounded-xl shadow-md p-6 mb-6">
           <img
