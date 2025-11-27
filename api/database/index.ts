@@ -4,7 +4,24 @@ const mysql = new SQL(process.env.MYSQL_URL!);
 
 export { mysql };
 
+async function waitForMySQL(maxRetries = 30, delayMs = 1000): Promise<void> {
+	for (let i = 0; i < maxRetries; i++) {
+		try {
+			await mysql`SELECT 1`;
+			console.log("✓ MySQL connection established");
+			return;
+		} catch (error) {
+			console.log(`Waiting for MySQL... (attempt ${i + 1}/${maxRetries})`);
+			await new Promise(resolve => setTimeout(resolve, delayMs));
+		}
+	}
+	throw new Error("Failed to connect to MySQL after maximum retries");
+}
+
 export async function InitialiseDB() {
+	// Wait for MySQL to be ready
+	await waitForMySQL();
+
 	await mysql`CREATE TABLE IF NOT EXISTS visits(
     visitors BIGINT DEFAULT 0
     )`;
