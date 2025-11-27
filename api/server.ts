@@ -1,6 +1,7 @@
 import { redis } from "bun";
 import { Elysia, file } from "elysia";
 import { resolve } from "path";
+import { readFile } from "fs/promises";
 import { InitialiseDB } from "./database";
 
 if (!process.env.MYSQL_URL) {
@@ -16,13 +17,30 @@ if (!process.env.REDIS_URL) {
 await InitialiseDB();
 
 const root = resolve(process.cwd(), "api/public");
+const isDev = process.env.NODE_ENV !== "production";
+
+// In production, load the SSR module
+let renderFunction: ((url: string) => Promise<string>) | null = null;
+
+if (!isDev) {
+  try {
+    const serverModule = await import("./dist/server/entry-server.js");
+    renderFunction = serverModule.render;
+  } catch (e) {
+    console.warn(
+      "SSR module not found. Run 'vite build --ssr src/entry-server.tsx' first.",
+    );
+  }
+}
 
 const app = new Elysia();
 
 app
-  .get("/", async () => await serveSPA())
-  .get("*", async ({ path }: { path: string }) =>
-    !path.includes(".") ? await serveSPA() : file(`${root}${path}`),
+  .get("/", async ({ request }) => await serveSPA(new URL(request.url).pathname))
+  .get("*", async ({ path, request }: { path: string; request: Request }) =>
+    !path.includes(".") && !path.startsWith("/api")
+      ? await serveSPA(new URL(request.url).pathname)
+      : file(`${root}${path}`),
   )
   .post("/api/contact", async (ctx) => {
     return {
@@ -47,8 +65,32 @@ function wait(ms: number): Promise<void> {
 
 export { app };
 
-const index = await file(`${root}/index.html`);
+async function serveSPA(url: string) {
+  const indexPath = resolve(root, "index.html");
+  let template = await readFile(indexPath, "utf-8");
 
-async function serveSPA() {
-  return index;
+  // In production with SSR enabled, render the app
+  if (!isDev && renderFunction) {
+    try {
+      const appHtml = await renderFunction(url);
+      template = template.replace(
+        '<div id="root"></div>',
+        `<div id="root">${appHtml}</div>`,
+      );
+
+      // Replace the client entry point
+      template = template.replace(
+        '/src/index.tsx',
+        '/assets/index.js',
+      );
+    } catch (e) {
+      console.error("SSR error:", e);
+    }
+  }
+
+  return new Response(template, {
+    headers: {
+      "Content-Type": "text/html",
+    },
+  });
 }

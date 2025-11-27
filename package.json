@@ -4,9 +4,11 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "start": "bun api/server.ts",
+    "start": "NODE_ENV=production bun api/server.ts",
     "dev": "concurrently 'vite' 'bun run --watch api/server.ts'",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entry-server.tsx",
+    "build:client": "vite build",
+    "build:server": "vite build --ssr src/entry-server.tsx",
     "serve": "vite preview",
     "format": "biome check --write --unsafe"
   },
