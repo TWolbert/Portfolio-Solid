@@ -34,7 +34,7 @@ export default defineConfig(({ command, mode, isSsrBuild }) => ({
             "/api": "http://localhost:3000",
         },
     },
-    base: "./",
+    base: "/",
     build: {
         target: "esnext",
         outDir: isSsrBuild ? "api/dist/server" : "api/public",

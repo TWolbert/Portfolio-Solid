@@ -6,9 +6,8 @@
   "scripts": {
     "start": "NODE_ENV=production bun api/server.ts",
     "dev": "concurrently 'vite' 'bun run --watch api/server.ts'",
-    "build": "vite build && vite build --ssr src/entry-server.tsx",
+    "build": "vite build",
     "build:client": "vite build",
-    "build:server": "vite build --ssr src/entry-server.tsx",
     "serve": "vite preview",
     "format": "biome check --write --unsafe",
     "migrate": "bun api/migrate.ts"
@@ -31,6 +30,7 @@
   "dependencies": {
     "@corvu/accordion": "^0.2.5",
     "@elysiajs/cookie": "^0.8.0",
+    "@elysiajs/static": "^1.4.7",
     "@solidjs/router": "^0.15.1",
     "bootstrap-icons": "^1.13.1",
     "concurrently": "^9.2.1",

@@ -1,5 +1,5 @@
 import Accordion from "@corvu/accordion";
-import { A, useNavigate } from "@solidjs/router";
+import { A } from "@solidjs/router";
 import { type Component, createEffect, type JSXElement } from "solid-js";
 import { setStore } from "../state/store";
 
@@ -413,53 +413,49 @@ export const ProjectCard: Component<{
     shortText: string;
     href: string;
 }> = (props) => {
-    const navigate = useNavigate();
-    const onClick = () => {
-        navigate(props.href);
-        console.log("test");
-    };
-
     return (
-        <article
-            onClick={() => onClick()}
-            class="group overflow-hidden rounded-xl border border-zinc-200 bg-white/60 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow duration-200 hover:cursor-pointer"
+        <A
+            href={props.href}
+            class="group block overflow-hidden rounded-xl border border-zinc-200 bg-white/60 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow duration-200"
         >
-            <div class="relative aspect-video w-full overflow-hidden bg-zinc-100">
-                <img
-                    src={props.imageSrc}
-                    alt={props.name}
-                    class={
-                        "h-full w-full transition-transform duration-300 group-hover:scale-105 " +
-                        (props.imageSizing ?? "object-contain")
-                    }
-                    loading="lazy"
-                />
-                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/30 to-transparent opacity-0 transition-opacity duration-200 group-hover:backdrop-blur-sm group-hover:opacity-100" />
-            </div>
-
-            <div class="p-4 flex flex-col gap-3">
-                <h3 class="text-lg font-heading tracking-wide">{props.name}</h3>
-                <p class="text-sm text-zinc-700 leading-relaxed">
-                    {props.shortText}
-                </p>
-
-                <div class="mt-1 flex flex-wrap items-center gap-2">
-                    {props.logoIcons.map((icon) => (
-                        <img
-                            src={icon}
-                            alt=""
-                            class="size-6 rounded border border-zinc-200 object-contain p-0.5 bg-white hover:scale-110 transition-all duration-100"
-                            loading="lazy"
-                        />
-                    ))}
+            <article>
+                <div class="relative aspect-video w-full overflow-hidden bg-zinc-100">
+                    <img
+                        src={props.imageSrc}
+                        alt={props.name}
+                        class={
+                            "h-full w-full transition-transform duration-300 group-hover:scale-105 " +
+                            (props.imageSizing ?? "object-contain")
+                        }
+                        loading="lazy"
+                    />
+                    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/30 to-transparent opacity-0 transition-opacity duration-200 group-hover:backdrop-blur-sm group-hover:opacity-100" />
                 </div>
 
-                <div class="mt-2 flex items-center gap-2 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200">
-                    <ArrowRightShortIcon class="text-xl size-4" />
-                    <span class="text-sm text-zinc-600">Learn more</span>
+                <div class="p-4 flex flex-col gap-3">
+                    <h3 class="text-lg font-heading tracking-wide">{props.name}</h3>
+                    <p class="text-sm text-zinc-700 leading-relaxed">
+                        {props.shortText}
+                    </p>
+
+                    <div class="mt-1 flex flex-wrap items-center gap-2">
+                        {props.logoIcons.map((icon) => (
+                            <img
+                                src={icon}
+                                alt=""
+                                class="size-6 rounded border border-zinc-200 object-contain p-0.5 bg-white hover:scale-110 transition-all duration-100"
+                                loading="lazy"
+                            />
+                        ))}
+                    </div>
+
+                    <div class="mt-2 flex items-center gap-2 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200">
+                        <ArrowRightShortIcon class="text-xl size-4" />
+                        <span class="text-sm text-zinc-600">Learn more</span>
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
+        </A>
     );
 };
 

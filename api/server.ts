@@ -1,6 +1,7 @@
 import { redis } from "bun";
 import { Elysia, file, t } from "elysia";
 import { cookie } from "@elysiajs/cookie";
+import { staticPlugin } from "@elysiajs/static";
 import { resolve, dirname } from "path";
 import { readFile } from "fs/promises";
 import { InitialiseDB, mysql } from "./database";
@@ -34,36 +35,27 @@ async function verifyAdminSession(sessionToken: string): Promise<boolean> {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const root = resolve(process.cwd(), "api/public");
-const isDev = process.env.NODE_ENV !== "production";
 
-// In production, load the SSR module
-let renderFunction: ((url: string) => Promise<string>) | null = null;
-
-if (!isDev) {
-  try {
-    const ssrPath = resolve(__dirname, "dist/server/entry-server.js");
-    const serverModule = await import(ssrPath);
-    renderFunction = serverModule.render;
-  } catch (e) {
-    console.warn(
-      "SSR module not found. Run 'vite build --ssr src/entry-server.tsx' first.",
-    );
-    console.error(e);
-  }
-}
-
-const app = new Elysia().use(cookie());
+const app = new Elysia()
+  .use(cookie())
+  .use(staticPlugin({
+    assets: root,
+    prefix: "/",
+  }));
 
 app
   .get(
     "/",
     async ({ request }) => await serveSPA(new URL(request.url).pathname),
   )
-  .get("*", async ({ path, request }: { path: string; request: Request }) =>
-    !path.includes(".") && !path.startsWith("/api")
-      ? await serveSPA(new URL(request.url).pathname)
-      : file(`${root}${path}`),
-  )
+  .get("*", async ({ path, request }: { path: string; request: Request }) => {
+    // Let static plugin handle files with extensions
+    if (path.includes(".") || path.startsWith("/api")) {
+      return;
+    }
+    // Otherwise serve SPA
+    return await serveSPA(new URL(request.url).pathname);
+  })
   .post("/api/contact", async ({ request }) => {
     try {
       console.log("Content-Type:", request.headers.get("content-type"));
@@ -226,23 +218,7 @@ export { app };
 
 async function serveSPA(url: string) {
   const indexPath = resolve(root, "index.html");
-  let template = await readFile(indexPath, "utf-8");
-
-  // In production with SSR enabled, render the app
-  if (!isDev && renderFunction) {
-    try {
-      const appHtml = await renderFunction(url);
-      template = template.replace(
-        '<div id="root"></div>',
-        `<div id="root">${appHtml}</div>`,
-      );
-
-      // Replace the client entry point
-      template = template.replace("/src/index.tsx", "/assets/index.js");
-    } catch (e) {
-      console.error("SSR error:", e);
-    }
-  }
+  const template = await readFile(indexPath, "utf-8");
 
   return new Response(template, {
     headers: {
