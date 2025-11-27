@@ -10,44 +10,46 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig(({ command, mode, isSsrBuild }) => ({
-    plugins: [
-        devtools(),
-        solidPlugin({ ssr: isSsrBuild }),
-        solidSvg({
-            defaultAsComponent: true,
-            svgo: {
-                enabled: true,
-            },
-        }),
-        ViteImageOptimizer({
-            png: {
-                quality: 80,
-            },
-            jpg: {
-                quality: 80,
-            },
-        }),
-    ],
-    server: {
-        port: 8000,
-        proxy: {
-            "/api": "http://localhost:3000",
-        },
+  plugins: [
+    devtools(),
+    solidPlugin({ ssr: isSsrBuild }),
+    solidSvg({
+      defaultAsComponent: true,
+      svgo: {
+        enabled: true,
+      },
+    }),
+    ViteImageOptimizer({
+      png: {
+        quality: 80,
+      },
+      jpg: {
+        quality: 80,
+      },
+    }),
+  ],
+  server: {
+    port: 8000,
+    proxy: {
+      "/api": "http://localhost:3000",
     },
-    base: "/",
-    build: {
-        target: "esnext",
-        outDir: isSsrBuild ? "api/dist/server" : "api/public",
-        sourcemap: false,
-        emptyOutDir: !isSsrBuild, // Don't clear directory during SSR build
+  },
+  base: "/",
+  build: {
+    target: "esnext",
+    outDir: isSsrBuild ? "api/dist/server" : "api/public",
+    sourcemap: false,
+    emptyOutDir: !isSsrBuild, // Don't clear directory during SSR build
+  },
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "./src"),
     },
-    resolve: {
-        alias: {
-            "@": resolve(__dirname, "./src"),
-        },
-        conditions: isSsrBuild ? ["node"] : [],
-    },
-    ssr: isSsrBuild ? {
+    conditions: isSsrBuild ? ["node"] : [],
+  },
+  ssr: isSsrBuild
+    ? {
         noExternal: ["@solidjs/router"],
-    } : undefined,
+      }
+    : undefined,
 }));

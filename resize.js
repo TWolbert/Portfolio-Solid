@@ -17,10 +17,11 @@ const files = fs
     const meta = await image.metadata();
 
     if (meta.width > maxSize || meta.height > maxSize) {
-      await image
+      const buffer = await image
         .resize(maxSize, maxSize, { fit: "inside", withoutEnlargement: true })
-        .toFile(filePath.replace(/(\.\w+)$/, "$1"));
+        .toBuffer();
 
+      await fs.promises.writeFile(filePath, buffer);
       console.log(`Resized: ${file}`);
     } else {
       console.log(`Skipped: ${file}`);
