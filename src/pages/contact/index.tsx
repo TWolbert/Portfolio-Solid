@@ -55,9 +55,10 @@ export default function Contact() {
     api
       .post("contact", { body: JSON.stringify(parsed.data) })
       .then((data) =>
-        data
-          .json()
-          .then((data) => setSuccess((data as { message: string }).message)),
+        data.json().then((data) => {
+          setSuccess((data as { message: string }).message);
+          form.reset();
+        }),
       )
       .catch((data) => {
         console.log(data);
