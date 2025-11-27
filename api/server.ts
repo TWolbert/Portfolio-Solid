@@ -1,10 +1,11 @@
 import { redis } from "bun";
 import { Elysia, file, t } from "elysia";
 import { cookie } from "@elysiajs/cookie";
-import { resolve } from "path";
+import { resolve, dirname } from "path";
 import { readFile } from "fs/promises";
 import { InitialiseDB, mysql } from "./database";
 import { randomBytes } from "crypto";
+import { fileURLToPath } from "url";
 
 if (!process.env.MYSQL_URL) {
   throw new Error("MYSQL_URL not set");
@@ -30,6 +31,8 @@ async function verifyAdminSession(sessionToken: string): Promise<boolean> {
   return !!username;
 }
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const root = resolve(process.cwd(), "api/public");
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -38,17 +41,18 @@ let renderFunction: ((url: string) => Promise<string>) | null = null;
 
 if (!isDev) {
   try {
-    const serverModule = await import("./dist/server/entry-server.js");
+    const ssrPath = resolve(__dirname, "dist/server/entry-server.js");
+    const serverModule = await import(ssrPath);
     renderFunction = serverModule.render;
   } catch (e) {
     console.warn(
       "SSR module not found. Run 'vite build --ssr src/entry-server.tsx' first.",
     );
+    console.error(e);
   }
 }
 
-const app = new Elysia()
-  .use(cookie());
+const app = new Elysia().use(cookie());
 
 app
   .get(
@@ -84,9 +88,12 @@ app
       };
     } catch (err) {
       console.error("Contact form error:", err);
-      return new Response(JSON.stringify({ error: "Failed to submit contact form" }), {
-        status: 500,
-      });
+      return new Response(
+        JSON.stringify({ error: "Failed to submit contact form" }),
+        {
+          status: 500,
+        },
+      );
     }
   })
   .post("/api/admin/login", async ({ request, cookie }) => {
@@ -135,9 +142,12 @@ app
       console.log("Session saved to Redis");
     } catch (err) {
       console.error("Redis error:", err);
-      return new Response(JSON.stringify({ error: "Session creation failed" }), {
-        status: 500,
-      });
+      return new Response(
+        JSON.stringify({ error: "Session creation failed" }),
+        {
+          status: 500,
+        },
+      );
     }
 
     // Set cookie

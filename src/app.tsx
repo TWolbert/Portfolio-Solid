@@ -6,7 +6,7 @@ import {
     type JSXElement,
     Suspense,
 } from "solid-js";
-import { Portal } from "solid-js/web";
+import { isServer, Portal } from "solid-js/web";
 import Loader from "./components/loadingSpinner";
 import { store } from "./pages/state/store";
 
@@ -152,6 +152,8 @@ export function NavLink(props: {
 }
 
 export function CustomNavIcon({ href, src }: { href: string; src: string }) {
+    if (isServer) return null;
+
     return (
         <Portal mount={document.getElementById("customNavIcon")!}>
             <NavLink href={href} src={src} />

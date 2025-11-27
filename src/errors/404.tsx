@@ -1,12 +1,12 @@
 import { setStore } from "@/pages/state/store";
 import { A } from "@solidjs/router";
-import { createEffect } from "solid-js";
+import { onMount } from "solid-js";
 import ArrowUpRightIcon from "bootstrap-icons/icons/arrow-up-right.svg";
 
 export default function NotFound() {
     setStore("pageTite", "Page not found...");
 
-    createEffect(() => {
+    onMount(() => {
         const nav = document.getElementById("nav");
         const footer = document.getElementById("footer");
 

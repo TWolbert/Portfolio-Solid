@@ -12,7 +12,7 @@ const __dirname = dirname(__filename);
 export default defineConfig(({ command, mode, isSsrBuild }) => ({
     plugins: [
         devtools(),
-        solidPlugin(),
+        solidPlugin({ ssr: isSsrBuild }),
         solidSvg({
             defaultAsComponent: true,
             svgo: {
@@ -37,7 +37,7 @@ export default defineConfig(({ command, mode, isSsrBuild }) => ({
     base: "./",
     build: {
         target: "esnext",
-        outDir: "api/public",
+        outDir: isSsrBuild ? "api/dist/server" : "api/public",
         sourcemap: false,
         emptyOutDir: !isSsrBuild, // Don't clear directory during SSR build
     },
@@ -45,5 +45,9 @@ export default defineConfig(({ command, mode, isSsrBuild }) => ({
         alias: {
             "@": resolve(__dirname, "./src"),
         },
+        conditions: isSsrBuild ? ["node"] : [],
     },
+    ssr: isSsrBuild ? {
+        noExternal: ["@solidjs/router"],
+    } : undefined,
 }));
