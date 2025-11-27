@@ -10,7 +10,8 @@
     "build:client": "vite build",
     "build:server": "vite build --ssr src/entry-server.tsx",
     "serve": "vite preview",
-    "format": "biome check --write --unsafe"
+    "format": "biome check --write --unsafe",
+    "migrate": "bun api/migrate.ts"
   },
   "license": "MIT",
   "devDependencies": {
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "@corvu/accordion": "^0.2.5",
+    "@elysiajs/cookie": "^0.8.0",
     "@solidjs/router": "^0.15.1",
     "bootstrap-icons": "^1.13.1",
     "concurrently": "^9.2.1",

@@ -9,7 +9,7 @@ import solidSvg from "vite-plugin-solid-svg";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-export default defineConfig({
+export default defineConfig(({ command, mode, isSsrBuild }) => ({
     plugins: [
         devtools(),
         solidPlugin(),
@@ -39,10 +39,11 @@ export default defineConfig({
         target: "esnext",
         outDir: "api/public",
         sourcemap: false,
+        emptyOutDir: !isSsrBuild, // Don't clear directory during SSR build
     },
     resolve: {
         alias: {
             "@": resolve(__dirname, "./src"),
         },
     },
-});
+}));

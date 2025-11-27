@@ -43,11 +43,17 @@ export default function WhyArtixLinux() {
             without the systemd dependency. You can choose from multiple init systems—OpenRC, runit, s6, or even dinit—giving you the freedom to pick what works best for your use case.
           </p>
 
-          <h3 class="text-xl font-heading mt-6 mb-3">Init System Choice</h3>
+          <h3 class="text-xl font-heading mt-6 mb-3">Init System Choice: runit</h3>
           <p class="text-zinc-700 mb-4 leading-relaxed">
-            I chose OpenRC for my setup. It's mature, well-documented, and strikes a good balance between simplicity and features.
-            Service scripts are shell scripts I can actually read and understand. Debugging is straightforward because the init system doesn't abstract away what's happening.
+            I chose runit for my setup, and it's been a revelation. runit is a supervision-based init system that's incredibly simple and fast.
+            Each service has a run script—just a plain shell script—that I can read and understand in seconds. There's no complex syntax to learn, no sprawling dependency chains to manage.
+            Service management is handled through the <code class="bg-zinc-100 px-2 py-1 rounded">sv</code> command: <code class="bg-zinc-100 px-2 py-1 rounded">sv up docker</code>, <code class="bg-zinc-100 px-2 py-1 rounded">sv down nginx</code>, <code class="bg-zinc-100 px-2 py-1 rounded">sv status postgresql</code>.
             When something goes wrong, I can trace exactly what's happening without wading through binary logs or complex dependency graphs.
+          </p>
+          <p class="text-zinc-700 mb-4 leading-relaxed">
+            What makes runit special is its process supervision approach. Each service runs under constant supervision—if a process crashes, runit automatically restarts it.
+            Service directories live in <code class="bg-zinc-100 px-2 py-1 rounded">/etc/runit/sv/</code> and contain simple run scripts. The entire system is transparent and debuggable.
+            No daemons managing daemons, no abstraction layers—just straightforward process supervision that does exactly what it says on the tin.
           </p>
 
           <h3 class="text-xl font-heading mt-6 mb-3">The Arch Foundation</h3>
@@ -61,14 +67,17 @@ export default function WhyArtixLinux() {
 
           <h3 class="text-xl font-heading mt-6 mb-3">Boot Time</h3>
           <p class="text-zinc-700 mb-4 leading-relaxed">
-            One immediate benefit was faster boot times. OpenRC's parallel service initialization is efficient without being overly complex.
-            My system boots in seconds, and I can see exactly what's happening at each stage. The boot process is transparent and predictable.
+            One immediate benefit was dramatically faster boot times. runit is lightning fast—services start in parallel automatically with minimal overhead.
+            My system boots in seconds, and I can see exactly what's happening at each stage through runit's simple logging.
+            The boot process is transparent and predictable. No complex dependency resolution, no waiting for service timeouts—just fast, reliable startup.
           </p>
 
           <h3 class="text-xl font-heading mt-6 mb-3">Resource Usage</h3>
           <p class="text-zinc-700 mb-4 leading-relaxed">
-            Without systemd's numerous background services and daemons, my system runs leaner. Less memory overhead means more resources available for development tools and applications.
+            runit is incredibly lightweight—the entire init system uses minimal memory and CPU. Without systemd's numerous background services and daemons, my system runs leaner.
+            Less memory overhead means more resources available for development tools and applications.
             On a development machine where I'm running Docker containers, databases, and multiple IDEs, every megabyte matters.
+            runit's minimalism means more resources for what actually matters: my work.
           </p>
 
           <h3 class="text-xl font-heading mt-6 mb-3">Modularity</h3>
@@ -83,7 +92,8 @@ export default function WhyArtixLinux() {
           <h3 class="text-xl font-heading mt-6 mb-3">Containerization</h3>
           <p class="text-zinc-700 mb-4 leading-relaxed">
             As someone who works extensively with Docker, I was initially concerned about compatibility. It turns out Docker runs perfectly fine without systemd.
-            Using OpenRC to manage Docker as a service is straightforward, and I've experienced zero issues with containerized development environments.
+            Using runit to manage Docker as a service is incredibly straightforward—just a simple run script in <code class="bg-zinc-100 px-2 py-1 rounded">/etc/runit/sv/docker/</code>.
+            I've experienced zero issues with containerized development environments, and runit's supervision ensures Docker stays running reliably.
             All my projects—whether they're ElysiaJS backends, SolidJS frontends, or PHP applications—run flawlessly.
           </p>
 
@@ -112,8 +122,9 @@ export default function WhyArtixLinux() {
 
           <h3 class="text-xl font-heading mt-6 mb-3">Learning Curve</h3>
           <p class="text-zinc-700 mb-4 leading-relaxed">
-            If you're coming from systemd-based distributions, there's a learning curve. Service management with OpenRC uses different commands,
-            and you'll need to familiarize yourself with init scripts. However, this learning process is valuable—it deepens your understanding of how Linux systems work at a fundamental level.
+            If you're coming from systemd-based distributions, there's a learning curve. Service management with runit uses the <code class="bg-zinc-100 px-2 py-1 rounded">sv</code> command instead of <code class="bg-zinc-100 px-2 py-1 rounded">systemctl</code>,
+            and you'll need to familiarize yourself with run scripts. However, runit's simplicity actually makes the learning process easier—there's less to learn because there's less complexity.
+            Writing a run script is just writing a shell script. This learning process is valuable—it deepens your understanding of how Linux systems work at a fundamental level.
             The time invested in learning pays dividends in system knowledge and troubleshooting ability.
           </p>
 
@@ -137,6 +148,30 @@ export default function WhyArtixLinux() {
           <p class="text-zinc-700 mb-4 leading-relaxed">
             Switching to Artix Linux reinvigorated my relationship with my development environment. I have a system that boots fast, runs lean, and stays out of my way.
             Service management is transparent and predictable. Debugging is straightforward. Resource usage is minimal.
+          </p>
+
+          <div class="bg-zinc-900 text-zinc-300 rounded-lg p-4 mb-6 overflow-x-auto font-mono text-sm">
+            <pre class="whitespace-pre">{`    OS → Artix Linux x86_64
+    Host → XPS 15 7590
+    Kernel → Linux 6.17.8-artix1-1
+    Uptime → 16 mins
+    Packages → 1314 (pacman), 26 (flatpak)
+    Shell → bash 5.3.3
+    Display → 2560x1440 in 28", 60 Hz [External]
+    WM → Hyprland 0.52.1 (Wayland)
+    Theme → Artix-dark [GTK2/3/4]
+    Icons → matefaenzadark [GTK2], Papirus-Dark [GTK3/4]
+    Terminal → claude
+    CPU → Intel(R) Core(TM) i7-9750H (12) @ 4.50 GHz
+    GPU → NVIDIA GeForce GTX 1650 Mobile / Max-Q [Discrete]
+    GPU → Intel UHD Graphics 630 @ 1.15 GHz [Integrated]
+    Memory → 5.90 GiB / 30.98 GiB (19%)
+    Disk → 115.16 GiB / 442.56 GiB (26%) - f2fs`}</pre>
+          </div>
+
+          <p class="text-zinc-700 mb-4 leading-relaxed">
+            As you can see from my actual system specs above, Artix runs beautifully on modern hardware. Memory usage stays low even with a full desktop environment (Hyprland),
+            and the system remains responsive throughout the day. With runit managing services, boot times are minimal and service reliability is excellent.
           </p>
           <p class="text-zinc-700 mb-4 leading-relaxed">
             All my development projects run smoothly—from building this portfolio with SolidJS and ElysiaJS to working on the cerebras-php package.
