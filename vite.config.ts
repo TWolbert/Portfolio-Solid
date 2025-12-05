@@ -44,5 +44,5 @@ export default defineConfig(({ command, mode, isSsrBuild }) => ({
     ? {
         noExternal: ["@solidjs/router"],
       }
-    : undefined,>
+    : undefined,
 }));
