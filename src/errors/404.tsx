@@ -1,7 +1,7 @@
 import { setStore } from "@/pages/state/store";
 import { A } from "@solidjs/router";
 import { onMount } from "solid-js";
-import ArrowUpRightIcon from "bootstrap-icons/icons/arrow-up-right.svg";
+// Using Bootstrap Icons CSS classes
 
 export default function NotFound() {
     setStore("pageTite", "Page not found...");
@@ -32,7 +32,7 @@ export default function NotFound() {
                 >
                     <code class=" font-mono text-white bg-black rounded-md p-1">
                         routes.ts
-                        <ArrowUpRightIcon class="inline ml-3" />
+                        <i class="bi-arrow-up-right inline ml-3" />
                     </code>
                 </A>
                 . If you believe you've found a bug please let me know thru the{" "}

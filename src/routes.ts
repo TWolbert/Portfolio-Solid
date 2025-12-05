@@ -1,6 +1,19 @@
 import type { RouteDefinition } from "@solidjs/router";
-import { lazy } from "solid-js";
 import Home from "./pages/home";
+import About from "./pages/about";
+import Contact from "./pages/contact";
+import Blog from "./pages/blog";
+import BuildingCerebrasPhpClient from "./pages/blog/building-cerebras-php-client";
+import BuildingGoedEmail from "./pages/blog/building-goed-email";
+import WhyArtixLinux from "./pages/blog/why-artix-linux";
+import Goed from "./pages/projects/goed";
+import CerebrasPhp from "./pages/projects/cerebras-php";
+import Dekenner from "./pages/projects/dekenner";
+import Kerstzwolle from "./pages/projects/kerstzwolle";
+import RuncloudMigration from "./pages/projects/runcloud-migration";
+import This from "./pages/projects/this";
+import Admin from "./pages/admin";
+import NotFound from "./errors/404";
 
 export const routes: RouteDefinition[] = [
     {
@@ -9,58 +22,58 @@ export const routes: RouteDefinition[] = [
     },
     {
         path: "/about",
-        component: lazy(() => import("./pages/about")),
+        component: About,
     },
     {
         path: "/contact",
-        component: lazy(() => import("./pages/contact")),
+        component: Contact,
     },
     {
         path: "/blog",
-        component: lazy(() => import("./pages/blog")),
+        component: Blog,
     },
     {
         path: "/blog/building-cerebras-php-client",
-        component: lazy(() => import("./pages/blog/building-cerebras-php-client")),
+        component: BuildingCerebrasPhpClient,
     },
     {
         path: "/blog/building-goed-email",
-        component: lazy(() => import("./pages/blog/building-goed-email")),
+        component: BuildingGoedEmail,
     },
     {
         path: "/blog/why-artix-linux",
-        component: lazy(() => import("./pages/blog/why-artix-linux")),
+        component: WhyArtixLinux,
     },
     {
         path: "/projects/goed",
-        component: lazy(() => import("./pages/projects/goed")),
+        component: Goed,
     },
     {
         path: "/projects/cerebras-php",
-        component: lazy(() => import("./pages/projects/cerebras-php")),
+        component: CerebrasPhp,
     },
     {
         path: "/projects/dekenner",
-        component: lazy(() => import("./pages/projects/dekenner")),
+        component: Dekenner,
     },
     {
         path: "/projects/kerstzwolle",
-        component: lazy(() => import("./pages/projects/kerstzwolle")),
+        component: Kerstzwolle,
     },
     {
         path: "/projects/runcloud-migration",
-        component: lazy(() => import("./pages/projects/runcloud-migration")),
+        component: RuncloudMigration,
     },
     {
         path: "/projects/this",
-        component: lazy(() => import("./pages/projects/this")),
+        component: This,
     },
     {
         path: "/admin",
-        component: lazy(() => import("./pages/admin")),
+        component: Admin,
     },
     {
         path: "**",
-        component: lazy(() => import("./errors/404")),
+        component: NotFound,
     },
 ];

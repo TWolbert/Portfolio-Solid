@@ -1,14 +1,9 @@
-import Accordion from "@corvu/accordion";
+import Accordion from "../../components/Accordion";
 import { A } from "@solidjs/router";
 import { type Component, createEffect, type JSXElement } from "solid-js";
 import { setStore } from "../state/store";
 
-// SVG icon imports (requires vite-plugin-solid-svg configured)
-import NewspaperIcon from "bootstrap-icons/icons/newspaper.svg";
-import PersonFillIcon from "bootstrap-icons/icons/person-fill.svg";
-import ArrowRightIcon from "bootstrap-icons/icons/arrow-right.svg";
-import XLgIcon from "bootstrap-icons/icons/x-lg.svg";
-import ArrowRightShortIcon from "bootstrap-icons/icons/arrow-right-short.svg";
+// Using Bootstrap Icons CSS classes instead of SVG imports
 
 export default function Home() {
     createEffect(() => {
@@ -41,21 +36,21 @@ export default function Home() {
                                 href="/blog"
                                 class="bg-zinc-300 text-black/70 font-heading px-3 py-2 rounded-xl flex gap-2 items-center hover:bg-zinc-400 active:scale-95 transition-all duration-100"
                             >
-                                <NewspaperIcon class="text-xl size-4" />
+                                <i class="bi-newspaper text-base" />
                                 Read my blog
                             </A>
                             <A
                                 href="/contact"
                                 class="bg-zinc-300 text-black/70 font-heading px-3 py-2 rounded-xl flex gap-2 items-center hover:bg-zinc-400 active:scale-95 transition-all duration-100"
                             >
-                                <PersonFillIcon class="text-xl size-4" />
+                                <i class="bi-person-fill text-base" />
                                 Get in contact
                             </A>
                             <A
                                 href="#projects"
                                 class="bg-blue-500 text-white font-heading px-3 py-2 rounded-xl flex gap-2 items-center hover:bg-blue-600 active:scale-95 transition-all duration-100"
                             >
-                                <ArrowRightIcon class="text-xl size-4" />
+                                <i class="bi-arrow-right text-base" />
                                 See my projects
                             </A>
                         </div>
@@ -397,7 +392,7 @@ export const InterestCard: Component<{
             <Accordion.Content class="overflow-hidden data-expanded:animate-expand data-collapsed:animate-collapse bg-white p-3 rounded-xl shadow">
                 {props.content}
                 <Accordion.Trigger class="bg-blue-500 text-white font-heading px-3 py-2 hover:bg-blue-600 active:scale-95 rounded-xl mt-2 flex items-center gap-2">
-                    <XLgIcon class="text-xl size-4" />
+                    <i class="bi-x-lg text-base" />
                     <span>Close {props.coverText}</span>
                 </Accordion.Trigger>
             </Accordion.Content>
@@ -450,7 +445,7 @@ export const ProjectCard: Component<{
                     </div>
 
                     <div class="mt-2 flex items-center gap-2 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200">
-                        <ArrowRightShortIcon class="text-xl size-4" />
+                        <i class="bi-arrow-right-short text-base" />
                         <span class="text-sm text-zinc-600">Learn more</span>
                     </div>
                 </div>

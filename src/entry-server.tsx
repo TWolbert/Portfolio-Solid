@@ -1,14 +1,24 @@
-import { Router } from "@solidjs/router";
-import { renderToStringAsync } from "solid-js/web";
+import { Router, Route } from "@solidjs/router";
+import {
+  renderToString,
+  generateHydrationScript,
+  isServer,
+} from "solid-js/web";
 import App from "./app";
 import { routes } from "./routes";
+import { For } from "solid-js";
 
-export async function render(url: string) {
-  const html = await renderToStringAsync(() => (
-    <Router url={url} root={(props) => <App>{props.children}</App>}>
-      {routes}
+export function render(url: string) {
+  const html = renderToString(() => (
+    <Router
+      url={isServer ? url : ""}
+      root={(props) => <App>{props.children}</App>}
+    >
+      <For each={routes}>
+        {(route) => <Route path={route.path} component={route.component} />}
+      </For>
     </Router>
   ));
 
-  return html;
+  return { html, script: generateHydrationScript() };
 }

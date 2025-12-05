@@ -1,15 +1,22 @@
 // @refresh reload
 import "./index.css";
 
-import { Router } from "@solidjs/router";
-import { render } from "solid-js/web";
+import { Router, Route } from "@solidjs/router";
+import { hydrate } from "solid-js/web";
+import { For } from "solid-js";
 import App from "./app";
 import { routes } from "./routes";
 
 const root = document.getElementById("root");
 
-// Always use client-side rendering (no SSR hydration)
-render(
-  () => <Router root={(props) => <App>{props.children}</App>}>{routes}</Router>,
+// Hydrate the server-rendered HTML
+hydrate(
+  () => (
+    <Router root={(props) => <App>{props.children}</App>}>
+      <For each={routes}>
+        {(route) => <Route path={route.path} component={route.component} />}
+      </For>
+    </Router>
+  ),
   root!,
 );

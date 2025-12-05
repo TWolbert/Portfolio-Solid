@@ -218,7 +218,37 @@ export { app };
 const indexPath = resolve(root, "index.html");
 const template = await readFile(indexPath, "utf-8");
 
+// Import the SSR render function in production
+let render: ((url: string) => { html: string; script: string }) | null = null;
+if (process.env.NODE_ENV === "production") {
+  try {
+    const serverEntry = await import("./dist/server/entry-server.js");
+    render = serverEntry.render;
+    console.log("SSR rendering enabled");
+  } catch (err) {
+    console.error("Failed to load SSR bundle, falling back to SPA mode:", err);
+  }
+}
+
 async function serveSPA(url: string) {
+  try {
+    // If SSR is available, render the app on the server
+    if (render) {
+      const { html: appHtml, script: hydrationScript } = render(url);
+      const html = template
+        .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
+        .replace('</head>', `${hydrationScript}</head>`);
+      return new Response(html, {
+        headers: {
+          "Content-Type": "text/html",
+        },
+      });
+    }
+  } catch (err) {
+    console.error("SSR rendering failed, falling back to SPA:", err);
+  }
+
+  // Fallback to SPA mode
   return new Response(template, {
     headers: {
       "Content-Type": "text/html",

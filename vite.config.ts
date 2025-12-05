@@ -4,7 +4,6 @@ import devtools from "solid-devtools/vite";
 import { defineConfig } from "vite";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import solidPlugin from "vite-plugin-solid";
-import solidSvg from "vite-plugin-solid-svg";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,12 +12,6 @@ export default defineConfig(({ command, mode, isSsrBuild }) => ({
   plugins: [
     devtools(),
     solidPlugin({ ssr: isSsrBuild }),
-    solidSvg({
-      defaultAsComponent: true,
-      svgo: {
-        enabled: true,
-      },
-    }),
     ViteImageOptimizer({
       png: {
         quality: 80,
@@ -51,5 +44,5 @@ export default defineConfig(({ command, mode, isSsrBuild }) => ({
     ? {
         noExternal: ["@solidjs/router"],
       }
-    : undefined,
+    : undefined,>
 }));

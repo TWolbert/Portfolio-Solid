@@ -4,17 +4,9 @@ import {
     createEffect,
     createSignal,
     type JSXElement,
-    Suspense,
 } from "solid-js";
 import { isServer, Portal } from "solid-js/web";
-import Loader from "./components/loadingSpinner";
 import { store } from "./pages/state/store";
-
-// Import only the SVGs you actually use
-import HouseFillIcon from "bootstrap-icons/icons/house-fill.svg";
-import NewspaperIcon from "bootstrap-icons/icons/newspaper.svg";
-import InfoCircleFillIcon from "bootstrap-icons/icons/info-circle-fill.svg";
-import PersonFillIcon from "bootstrap-icons/icons/person-fill.svg";
 
 const App: Component<{ children: JSXElement }> = (props) => {
     return (
@@ -43,16 +35,16 @@ const App: Component<{ children: JSXElement }> = (props) => {
                     </div>
                     <div class="flex gap-2 items-center">
                         <div id="customNavIcon"></div>
-                        <NavLink Icon={HouseFillIcon} href="/" label="Home" />
-                        <NavLink Icon={NewspaperIcon} href="/blog" label="Blog" />
-                        <NavLink Icon={InfoCircleFillIcon} href="/about" label="About" />
-                        <NavLink Icon={PersonFillIcon} href="/contact" label="Contact" />
+                        <NavLink icon="bi-house-fill" href="/" label="Home" />
+                        <NavLink icon="bi-newspaper" href="/blog" label="Blog" />
+                        <NavLink icon="bi-info-circle-fill" href="/about" label="About" />
+                        <NavLink icon="bi-person-fill" href="/contact" label="Contact" />
                     </div>
                 </div>
             </nav>
 
             <main class="flex-1 min-h-0">
-                <Suspense fallback={<Loader />}>{props.children}</Suspense>
+                {props.children}
             </main>
 
             <footer
@@ -99,17 +91,10 @@ const App: Component<{ children: JSXElement }> = (props) => {
     );
 };
 
-type SvgComponent = (props: {
-    class?: string;
-    width?: number | string;
-    height?: number | string;
-    style?: any;
-}) => JSXElement;
-
 export function NavLink(props: {
     href: string;
-    Icon?: SvgComponent | string;
-    src?: string; // keep for CustomNavIcon
+    icon?: string; // bootstrap icon class
+    src?: string; // custom image src
     label?: string;
 }) {
     const location = useLocation();
@@ -133,8 +118,8 @@ export function NavLink(props: {
             }
             title={props.label}
         >
-            {props.Icon && (
-                <props.Icon class="size-4" style={{ color: "currentColor" }} />
+            {props.icon && (
+                <i class={`${props.icon} text-base`} />
             )}
             {props.src && (
                 <img

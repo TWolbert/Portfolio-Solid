@@ -36,6 +36,9 @@ COPY --from=prod-deps /usr/src/app/node_modules ./node_modules
 # Built client assets
 COPY --from=build /usr/src/app/api/public ./api/public
 
+# Built SSR server bundle
+COPY --from=build /usr/src/app/api/dist ./api/dist
+
 # Server source (so `bun api/server.ts` exists at runtime)
 COPY --from=build /usr/src/app/api ./api
 
