@@ -12,50 +12,51 @@ export default function Home() {
 
     return (
         <>
-            <section class="xl:px-[20%] px-3 min-h-[55vh]" id="lander">
-                <div class="grid grid-cols-1 xl:grid-cols-2 xl:mt-40 mt-5 items-center justify-around">
+            <section class="xl:px-[20%] px-5 min-h-[55vh]" id="lander">
+                <div class="grid grid-cols-1 xl:grid-cols-2 xl:mt-40 mt-8 items-center justify-around gap-8">
                     <div>
-                        <h1 class="text-2xl font-heading text-center xl:text-left">
+                        <h1 class="text-3xl md:text-4xl xl:text-2xl font-heading text-center xl:text-left mb-4">
                             Hi, I'm Teun Wolbert
                         </h1>
-                        <p class=" tracking-wide mt-2">
+                        <p class="text-base md:text-lg xl:text-base leading-relaxed mt-3">
                             I am a software developer from the Netherlands, I
                             specialise in web development, where I do everything
                             from writing frontends like the one you're looking
                             at; to deploying my own web servers and managing my
                             own CI/CD
                         </p>
-                        <p class=" tracking-wide mt-2">
+                        <p class="text-base md:text-lg xl:text-base leading-relaxed mt-3">
                             I have taught myself a lot of different
-                            technologies, on the right here you will have a very
+                            technologies<span class="hidden xl:inline">, on the right here you will have a very
                             non-exhaustive list of the tools I've used in my
-                            carreer.
+                            carreer</span><span class="xl:hidden">. Below is a
+                            list of the tools I've used in my career</span>.
                         </p>
-                        <div class="mt-5  xl:mb-0 grid xl:grid-cols-3 grid-cols-1 gap-3">
+                        <div class="mt-6 mb-8 xl:mb-0 grid xl:grid-cols-3 grid-cols-1 gap-3">
                             <A
                                 href="/blog"
-                                class="bg-zinc-300 text-zinc-800 font-heading px-3 py-2 rounded-xl flex gap-2 items-center hover:bg-zinc-400 active:scale-95 transition-all duration-100"
+                                class="bg-zinc-300 text-zinc-800 font-heading px-4 py-3 md:py-4 rounded-xl flex gap-3 items-center justify-center hover:bg-zinc-400 active:scale-95 transition-all duration-100 text-base md:text-lg xl:text-base"
                             >
-                                <i class="bi-newspaper text-base" />
+                                <i class="bi-newspaper text-lg md:text-xl xl:text-base" />
                                 Read my blog
                             </A>
                             <A
                                 href="/contact"
-                                class="bg-zinc-300 text-zinc-800 font-heading px-3 py-2 rounded-xl flex gap-2 items-center hover:bg-zinc-400 active:scale-95 transition-all duration-100"
+                                class="bg-zinc-300 text-zinc-800 font-heading px-4 py-3 md:py-4 rounded-xl flex gap-3 items-center justify-center hover:bg-zinc-400 active:scale-95 transition-all duration-100 text-base md:text-lg xl:text-base"
                             >
-                                <i class="bi-person-fill text-base" />
+                                <i class="bi-person-fill text-lg md:text-xl xl:text-base" />
                                 Get in contact
                             </A>
                             <A
                                 href="#projects"
-                                class="bg-blue-500 text-white font-heading px-3 py-2 rounded-xl flex gap-2 items-center hover:bg-blue-600 active:scale-95 transition-all duration-100"
+                                class="bg-blue-500 text-white font-heading px-4 py-3 md:py-4 rounded-xl flex gap-3 items-center justify-center hover:bg-blue-600 active:scale-95 transition-all duration-100 text-base md:text-lg xl:text-base"
                             >
-                                <i class="bi-arrow-right text-base" />
+                                <i class="bi-arrow-right text-lg md:text-xl xl:text-base" />
                                 See my projects
                             </A>
                         </div>
                     </div>
-                    <div class="grid grid-cols-4 gap-1 px-auto mx-auto xl:mx-0 xl:ml-auto p-3 *:border-collapse w-fit relative">
+                    <div class="grid grid-cols-4 gap-2 md:gap-3 xl:gap-1 px-auto mx-auto xl:mx-0 xl:ml-auto p-3 *:border-collapse w-fit relative">
                         <div class="absolute size-16 bg-blue-200 blur-xl top-10 right-20" />
                         <div class="absolute size-16 bg-blue-500 blur-xl top-20 left-20" />
                         <div class="absolute size-16 bg-blue-300 blur-xl bottom-20 right-20" />
@@ -134,17 +135,17 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section class="xl:px-[20%] px-3" id="projects">
-                <div class="mt-20">
-                    <h2 class="text-2xl font-heading pt-5">
+            <section class="xl:px-[20%] px-5" id="projects">
+                <div class="mt-16 md:mt-20">
+                    <h2 class="text-3xl md:text-4xl xl:text-2xl font-heading pt-5 mb-3">
                         Projects I have worked on
                     </h2>
-                    <p class="mt-2 mb-5">
+                    <p class="mt-3 mb-6 md:mb-8 text-base md:text-lg xl:text-base leading-relaxed">
                         I have worked on a lot of things, partly for companies
                         thru internships, and partly just things I've developed
                         on my own.
                     </p>
-                    <div class="grid grid-cols- xl:grid-cols-3 gap-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
                         <ProjectCard
                             href="/projects/goed"
                             name="Goed. Email"
@@ -231,17 +232,17 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section class="xl:px-[20%] p-3" id="techilike">
-                <div class="mt-20">
-                    <h2 class="text-2xl font-heading">
+            <section class="xl:px-[20%] px-5 py-3" id="techilike">
+                <div class="mt-16 md:mt-20">
+                    <h2 class="text-3xl md:text-4xl xl:text-2xl font-heading mb-3">
                         Tech I currently really enjoy
                     </h2>
-                    <p class="mt-2 mb-5">
+                    <p class="mt-3 mb-6 md:mb-8 text-base md:text-lg xl:text-base leading-relaxed">
                         I couldn't really think of another spot to put this,
                         below is a list of really cool apps, frameworks and
                         other tech related stuff that's caught my eye.
                     </p>
-                    <div class="flex flex-col gap-2">
+                    <div class="flex flex-col gap-3 md:gap-4">
                         <Accordion collapseBehavior="hide">
                             <InterestCard
                                 coverText="Zen Browser"
@@ -397,23 +398,23 @@ export const InterestCard: Component<{
     return (
         <Accordion.Item>
             <h3>
-                <Accordion.Trigger class="flex gap-2 items-center bg-white w-full p-3 rounded-xl shadow cursor-pointer hover:bg-zinc-50 transition active:scale-95 duration-100">
+                <Accordion.Trigger class="flex gap-3 items-center bg-white w-full p-4 md:p-5 rounded-xl shadow cursor-pointer hover:bg-zinc-50 transition active:scale-95 duration-100">
                     <img
                         src={props.src}
                         alt={props.alt}
-                        class="size-8 object-contain border rounded-xl p-1 shadow bg-white"
+                        class="size-10 md:size-12 xl:size-8 object-contain border rounded-xl p-1 shadow bg-white"
                     />
-                    <span class="font-heading tracking-wide">
+                    <span class="font-heading tracking-wide text-base md:text-lg xl:text-base">
                         {props.coverText}
                     </span>
                 </Accordion.Trigger>
             </h3>
 
             {/* Add animation classes and overflow handling like component 1 */}
-            <Accordion.Content class="overflow-hidden data-expanded:animate-expand data-collapsed:animate-collapse bg-white p-3 rounded-xl shadow">
+            <Accordion.Content class="overflow-hidden data-expanded:animate-expand data-collapsed:animate-collapse bg-white p-4 md:p-5 rounded-xl shadow text-base md:text-lg xl:text-base">
                 {props.content}
-                <Accordion.Trigger class="bg-blue-500 text-white font-heading px-3 py-2 hover:bg-blue-600 active:scale-95 rounded-xl mt-2 flex items-center gap-2">
-                    <i class="bi-x-lg text-base" />
+                <Accordion.Trigger class="bg-blue-500 text-white font-heading px-4 py-3 md:py-4 hover:bg-blue-600 active:scale-95 rounded-xl mt-3 md:mt-4 flex items-center justify-center gap-2 text-base md:text-lg xl:text-base">
+                    <i class="bi-x-lg text-base md:text-lg xl:text-base" />
                     <span>Close {props.coverText}</span>
                 </Accordion.Trigger>
             </Accordion.Content>
@@ -448,18 +449,18 @@ export const ProjectCard: Component<{
                     <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/30 to-transparent opacity-0 transition-opacity duration-200 group-hover:backdrop-blur-sm group-hover:opacity-100" />
                 </div>
 
-                <div class="p-4 flex flex-col gap-3">
-                    <h3 class="text-lg font-heading tracking-wide">{props.name}</h3>
-                    <p class="text-sm text-zinc-700 leading-relaxed">
+                <div class="p-4 md:p-5 flex flex-col gap-3">
+                    <h3 class="text-xl md:text-2xl xl:text-lg font-heading tracking-wide">{props.name}</h3>
+                    <p class="text-base md:text-lg xl:text-sm text-zinc-700 leading-relaxed">
                         {props.shortText}
                     </p>
 
-                    <div class="mt-1 flex flex-wrap items-center gap-2">
+                    <div class="mt-1 flex flex-wrap items-center gap-2 md:gap-3">
                         {props.logoIcons.map((icon) => (
                             <img
                                 src={icon}
                                 alt=""
-                                class="size-6 rounded border border-zinc-200 object-contain p-0.5 bg-white hover:scale-110 transition-all duration-100"
+                                class="size-7 md:size-8 xl:size-6 rounded border border-zinc-200 object-contain p-0.5 bg-white hover:scale-110 transition-all duration-100"
                                 loading="lazy"
                             />
                         ))}
