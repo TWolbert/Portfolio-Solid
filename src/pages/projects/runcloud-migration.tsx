@@ -3,7 +3,7 @@ import { setStore } from "../state/store";
 
 export default function RunCloudMigration() {
   createEffect(() => {
-    setStore("pageTite", "RunCloud Migration for NLVK");
+    setStore("pageTitle", "RunCloud Migration for NLVK");
   });
 
   return (

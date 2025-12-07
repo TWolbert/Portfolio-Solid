@@ -3,7 +3,7 @@ import { setStore } from "../state/store";
 
 export default function ThisPortfolio() {
   createEffect(() => {
-    setStore("pageTite", "This Portfolio");
+    setStore("pageTitle", "This Portfolio");
   });
 
   return (

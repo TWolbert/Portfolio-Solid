@@ -4,7 +4,7 @@ import { setStore } from "../state/store";
 
 export default function Blog() {
   createEffect(() => {
-    setStore("pageTite", "Blog");
+    setStore("pageTitle", "Blog");
   });
 
   return (

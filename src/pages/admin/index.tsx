@@ -12,7 +12,7 @@ interface ContactSubmission {
 
 export default function Admin() {
   createEffect(() => {
-    setStore("pageTite", "Admin");
+    setStore("pageTitle", "Admin");
   });
 
   const [authenticated, setAuthenticated] = createSignal(false);

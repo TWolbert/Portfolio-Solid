@@ -4,7 +4,7 @@ import { setStore } from "../state/store";
 
 export default function BuildingGoedEmail() {
   createEffect(() => {
-    setStore("pageTite", "Building Goed.Email: A Modern Email Client");
+    setStore("pageTitle", "Building Goed.Email: A Modern Email Client");
   });
 
   return (

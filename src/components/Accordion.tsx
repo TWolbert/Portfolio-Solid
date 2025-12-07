@@ -11,15 +11,23 @@ import {
 type AccordionContextValue = {
     openItems: () => Set<number>;
     toggleItem: (index: number) => void;
+    registerItem: () => number;
 };
 
 const AccordionContext = createContext<AccordionContextValue>();
+
+const AccordionItemContext = createContext<number>();
 
 export const Accordion: Component<{
     children: JSXElement;
     collapseBehavior?: "hide" | "show";
 }> = (props) => {
     const [openItems, setOpenItems] = createSignal<Set<number>>(new Set());
+    let itemCounter = 0;
+
+    const registerItem = () => {
+        return itemCounter++;
+    };
 
     const toggleItem = (index: number) => {
         setOpenItems((prev) => {
@@ -34,25 +42,25 @@ export const Accordion: Component<{
     };
 
     return (
-        <AccordionContext.Provider value={{ openItems, toggleItem }}>
+        <AccordionContext.Provider value={{ openItems, toggleItem, registerItem }}>
             <div class="flex flex-col gap-2">{props.children}</div>
         </AccordionContext.Provider>
     );
 };
 
-let itemIndex = 0;
-
 export const AccordionItem: Component<{ children: JSXElement }> = (props) => {
     const context = useContext(AccordionContext);
     if (!context) throw new Error("AccordionItem must be used within Accordion");
 
-    const [index] = createSignal(itemIndex++);
-    const isOpen = () => context.openItems().has(index());
+    const index = context.registerItem();
+    const isOpen = () => context.openItems().has(index);
 
     return (
-        <div data-expanded={isOpen() ? "true" : undefined} data-collapsed={!isOpen() ? "true" : undefined}>
-            {props.children}
-        </div>
+        <AccordionItemContext.Provider value={index}>
+            <div data-expanded={isOpen() ? "true" : undefined} data-collapsed={!isOpen() ? "true" : undefined}>
+                {props.children}
+            </div>
+        </AccordionItemContext.Provider>
     );
 };
 
@@ -63,24 +71,13 @@ export const AccordionTrigger: Component<{
     const context = useContext(AccordionContext);
     if (!context) throw new Error("AccordionTrigger must be used within Accordion");
 
-    // Find the parent item's index by traversing up
-    let currentElement: Element | null = null;
-    const index = () => {
-        if (typeof document !== "undefined" && currentElement) {
-            const item = currentElement.closest("[data-expanded], [data-collapsed]");
-            if (item) {
-                const siblings = Array.from(item.parentElement?.children || []);
-                return siblings.indexOf(item);
-            }
-        }
-        return 0;
-    };
+    const index = useContext(AccordionItemContext);
+    if (index === undefined) throw new Error("AccordionTrigger must be used within AccordionItem");
 
     return (
         <button
-            ref={(el) => (currentElement = el)}
             type="button"
-            onClick={() => context.toggleItem(index())}
+            onClick={() => context.toggleItem(index)}
             class={props.class}
         >
             {props.children}
@@ -95,23 +92,14 @@ export const AccordionContent: Component<{
     const context = useContext(AccordionContext);
     if (!context) throw new Error("AccordionContent must be used within Accordion");
 
-    let currentElement: Element | null = null;
-    const index = () => {
-        if (typeof document !== "undefined" && currentElement) {
-            const item = currentElement.closest("[data-expanded], [data-collapsed]");
-            if (item) {
-                const siblings = Array.from(item.parentElement?.children || []);
-                return siblings.indexOf(item);
-            }
-        }
-        return 0;
-    };
+    const index = useContext(AccordionItemContext);
+    if (index === undefined) throw new Error("AccordionContent must be used within AccordionItem");
 
-    const isOpen = () => context.openItems().has(index());
+    const isOpen = () => context.openItems().has(index);
 
     return (
         <Show when={isOpen()}>
-            <div ref={(el) => (currentElement = el)} class={props.class}>
+            <div class={props.class}>
                 {props.children}
             </div>
         </Show>

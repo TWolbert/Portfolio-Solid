@@ -4,7 +4,7 @@ import { setStore } from "../state/store";
 
 export default function WhyArtixLinux() {
   createEffect(() => {
-    setStore("pageTite", "Why I Switched to Artix Linux");
+    setStore("pageTitle", "Why I Switched to Artix Linux");
   });
 
   return (

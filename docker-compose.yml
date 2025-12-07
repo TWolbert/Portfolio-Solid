@@ -4,6 +4,8 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: rootpassword
       MARIADB_DATABASE: portfolio
+    volumes:
+      - db_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       interval: 10s
@@ -22,5 +24,11 @@ services:
 
   cache:
     image: valkey/valkey:alpine3.22
+    volumes:
+      - cache_data:/data
     ports:
       - "6379:6379"
+
+volumes:
+  db_data:
+  cache_data:

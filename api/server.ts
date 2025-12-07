@@ -36,12 +36,23 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const root = resolve(process.cwd(), "api/public");
 
-const app = new Elysia().use(cookie()).use(
-  staticPlugin({
-    assets: root,
-    prefix: "/",
-  }),
-);
+const app = new Elysia()
+  .use(cookie())
+  .use(
+    staticPlugin({
+      assets: root,
+      prefix: "/",
+    }),
+  )
+  .onAfterHandle(({ request, set }) => {
+    const url = new URL(request.url);
+    const pathname = url.pathname;
+
+    // Add 30-day cache for SVG files
+    if (pathname.endsWith(".svg")) {
+      set.headers["Cache-Control"] = "public, max-age=2592000, immutable";
+    }
+  });
 
 app
   .get(

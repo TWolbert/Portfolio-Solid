@@ -30,7 +30,7 @@ const App: Component<{ children: JSXElement }> = (props) => {
                         </A>
                         <span class="hidden md:inline text-zinc-400">|</span>
                         <span class="hidden md:inline text-base font-heading text-zinc-600">
-                            {store.pageTite}
+                            {store.pageTitle}
                         </span>
                     </div>
                     <div class="flex gap-2 items-center">

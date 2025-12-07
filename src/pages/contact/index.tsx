@@ -17,7 +17,7 @@ const submitSchema = z.object({
 
 export default function Contact() {
   createEffect(() => {
-    setStore("pageTite", "Contact");
+    setStore("pageTitle", "Contact");
   });
 
   const [consented, setConsented] = createSignal(false);

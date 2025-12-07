@@ -4,7 +4,7 @@ import { createEffect } from "solid-js";
 
 export default function ProjectGoed() {
     createEffect(() => {
-        setStore("pageTite", "Goed. Email");
+        setStore("pageTitle", "Goed. Email");
     });
     return (
         <>

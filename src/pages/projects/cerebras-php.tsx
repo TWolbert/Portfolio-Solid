@@ -4,7 +4,7 @@ import { setStore } from "../state/store";
 
 export default function CerebrasPhp() {
   createEffect(() => {
-    setStore("pageTite", "Cerebras PHP");
+    setStore("pageTitle", "Cerebras PHP");
   });
 
   return (

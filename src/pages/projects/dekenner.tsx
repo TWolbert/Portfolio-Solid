@@ -4,7 +4,7 @@ import { setStore } from "../state/store";
 
 export default function DeKenner() {
   createEffect(() => {
-    setStore("pageTite", "De Kenner");
+    setStore("pageTitle", "De Kenner");
   });
 
   return (

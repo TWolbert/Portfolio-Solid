@@ -4,7 +4,7 @@ import { setStore } from "../state/store";
 
 export default function Kerstzwolle() {
   createEffect(() => {
-    setStore("pageTite", "Inschrijven Kerstzwolle");
+    setStore("pageTitle", "Inschrijven Kerstzwolle");
   });
 
   return (

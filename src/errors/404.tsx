@@ -4,7 +4,7 @@ import { onMount } from "solid-js";
 // Using Bootstrap Icons CSS classes
 
 export default function NotFound() {
-    setStore("pageTite", "Page not found...");
+    setStore("pageTitle", "Page not found...");
 
     onMount(() => {
         const nav = document.getElementById("nav");
