@@ -63,61 +63,73 @@ export default function Home() {
                         <LogoBadge
                             src="/icons/laravel.png"
                             url="https://laravel.com"
+                            alt="Laravel"
                         />
-                        <LogoBadge src="/icons/php.png" url="https://www.php.net" />
-                        <LogoBadge src="/icons/react.svg" url="https://react.dev" />
+                        <LogoBadge src="/icons/php.png" url="https://www.php.net" alt="PHP" />
+                        <LogoBadge src="/icons/react.svg" url="https://react.dev" alt="React" />
                         <LogoBadge
                             src="/icons/typescript.png"
                             hoverSrc="/icons/javascript.png"
                             url="https://www.typescriptlang.org"
+                            alt="TypeScript"
                         />
                         <LogoBadge
                             src="/icons/bun.svg"
                             hoverSrc="/icons/node.svg"
                             url="https://bun.sh"
+                            alt="Bun"
                         />
                         <LogoBadge
                             src="/icons/docker.png"
                             url="https://www.docker.com"
+                            alt="Docker"
                         />
                         <LogoBadge
                             src="/icons/tailwindcss.png"
                             hoverSrc="/icons/css.png"
                             url="https://tailwindcss.com"
+                            alt="Tailwind CSS"
                         />
                         <LogoBadge
                             src="/icons/solid.svg"
                             url="https://www.solidjs.com"
+                            alt="SolidJS"
                         />
                         <LogoBadge
                             src="/icons/csharp.png"
                             url="https://learn.microsoft.com/dotnet/csharp/"
+                            alt="C#"
                         />
                         <LogoBadge
                             src="/icons/elysia.svg"
                             url="https://elysiajs.com"
+                            alt="ElysiaJS"
                         />
                         <LogoBadge
                             src="/icons/caddy.png"
                             hoverSrc="/icons/nginx.png"
                             url="https://caddyserver.com"
+                            alt="Caddy"
                         />
-                        <LogoBadge src="/icons/nextjs.png" url="https://nextjs.org" />
+                        <LogoBadge src="/icons/nextjs.png" url="https://nextjs.org" alt="Next.js" />
                         <LogoBadge
                             src="/icons/mariadb.png"
                             hoverSrc="/icons/mysql.png"
                             url="https://mariadb.org"
+                            alt="MariaDB"
                         />
                         <LogoBadge
                             src="/icons/redis.svg"
                             hoverSrc="/icons/valkey.png"
                             url="https://redis.io"
+                            alt="Redis"
                         />
-                        <LogoBadge src="/icons/coolify.png" url="https://coolify.io" />
+                        <LogoBadge src="/icons/coolify.png" url="https://coolify.io" alt="Coolify" />
                         <LogoBadge
                             src="/icons/linux.png"
                             hoverSrc="/icons/arch.png"
                             url="https://www.kernel.org"
+                            alt="Linux"
                         />
                     </div>
                 </div>
@@ -234,6 +246,7 @@ export default function Home() {
                             <InterestCard
                                 coverText="Zen Browser"
                                 src="/icons/zen.png"
+                                alt="Zen Browser logo"
                                 content={
                                     <>
                                         <span class=" italic text-zinc-500">
@@ -258,6 +271,7 @@ export default function Home() {
                             <InterestCard
                                 coverText="Zed Code Editor"
                                 src="/icons/zed.png"
+                                alt="Zed editor logo"
                                 content={
                                     <>
                                         <span class=" italic text-zinc-500">
@@ -282,6 +296,7 @@ export default function Home() {
                                         servers, icons and more
                                         <img
                                             src="/zed-extensions.png"
+                                            alt="Zed editor extensions panel"
                                             class="rounded-md shadow"
                                         />
                                         <br />
@@ -298,6 +313,7 @@ export default function Home() {
                                         time actually doing it
                                         <img
                                             src="/zed-terminal.png"
+                                            alt="Zed editor integrated terminal"
                                             class="rounded-md shadow"
                                         />
                                     </>
@@ -306,6 +322,7 @@ export default function Home() {
                             <InterestCard
                                 coverText="The ElysiaJS Framework"
                                 src="/icons/elysia.svg"
+                                alt="ElysiaJS logo"
                                 content={
                                     <>
                                         <span class=" italic text-zinc-500">
@@ -333,6 +350,7 @@ export default function Home() {
                             <InterestCard
                                 coverText="Artix Linux"
                                 src="/icons/artix.png"
+                                alt="Artix Linux logo"
                                 content={
                                     <>
                                         <span class=" italic text-zinc-500">
@@ -356,6 +374,7 @@ export default function Home() {
                                         my Hyprland environment
                                         <img
                                             src="/artix-screenshot.png"
+                                            alt="Artix Linux Hyprland desktop environment screenshot"
                                             class="rounded-md shadow"
                                         />
                                     </>
@@ -373,6 +392,7 @@ export const InterestCard: Component<{
     coverText: string;
     src: string;
     content: JSXElement;
+    alt: string;
 }> = (props) => {
     return (
         <Accordion.Item>
@@ -380,6 +400,7 @@ export const InterestCard: Component<{
                 <Accordion.Trigger class="flex gap-2 items-center bg-white w-full p-3 rounded-xl shadow cursor-pointer hover:bg-zinc-50 transition active:scale-95 duration-100">
                     <img
                         src={props.src}
+                        alt={props.alt}
                         class="size-8 object-contain border rounded-xl p-1 shadow bg-white"
                     />
                     <h2 class="font-heading tracking-wide">
@@ -458,6 +479,7 @@ export const LogoBadge: Component<{
     src: string;
     hoverSrc?: string;
     url: string;
+    alt: string;
 }> = (props) => {
     const base =
         "border-1 border-zinc-200 rounded-md p-2 size-20 xl:size-26 aspect-square object-contain bg-zinc-50/50 backdrop-blur-sm group-hover:bg-zinc-200/50";
@@ -471,13 +493,14 @@ export const LogoBadge: Component<{
             {props.hoverSrc && (
                 <img
                     src={props.hoverSrc}
-                    aria-hidden="true"
+                    alt=""
                     class={`${base} absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100`}
                 />
             )}
 
             <img
                 src={props.src}
+                alt={props.alt}
                 class={`${base} relative z-10 transition-opacity duration-150  ${
                     props.hoverSrc ? "group-hover:opacity-0" : ""
                 }`}
