@@ -1,4 +1,5 @@
 // @refresh reload
+import "@fontsource-variable/merriweather";
 import "./index.css";
 
 import { Router, Route } from "@solidjs/router";

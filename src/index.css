@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
+@import "bootstrap-icons/font/bootstrap-icons.css";
 @import "tailwindcss";
 
 html {
@@ -13,7 +13,7 @@ body {
 }
 
 @theme inline {
-    --font-heading: "Merriweather", serif;
+    --font-heading: "Merriweather Variable", serif;
 }
 @theme {
     --animate-expand: expand 250ms cubic-bezier(0.32, 0.72, 0, 0.75);
