@@ -168,7 +168,7 @@ export default function Home() {
                                 "/icons/typescript.png",
                                 "/icons/mariadb.png",
                                 "/icons/valkey.png",
-                                "/zed.png",
+                                "/icons/zed.png",
                                 "/icons/artix.png",
                             ]}
                             shortText="Pictured is some code from this website"
@@ -257,7 +257,7 @@ export default function Home() {
                             />
                             <InterestCard
                                 coverText="Zed Code Editor"
-                                src="/zed.png"
+                                src="/icons/zed.png"
                                 content={
                                     <>
                                         <span class=" italic text-zinc-500">

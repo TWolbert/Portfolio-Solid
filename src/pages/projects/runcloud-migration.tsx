@@ -35,7 +35,7 @@ export default function RunCloudMigration() {
           {["mysql.png", "plesk.png", "runcloudlogo.png", "phpmyadmin.png"].map(
             (icon) => (
               <img
-                src={`/${icon}`}
+                src={`/icons/${icon}`}
                 alt=""
                 class="size-12 rounded border border-zinc-200 object-contain p-1 bg-white"
               />
