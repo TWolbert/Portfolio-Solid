@@ -34,14 +34,14 @@ export default function Home() {
                         <div class="mt-5  xl:mb-0 grid xl:grid-cols-3 grid-cols-1 gap-3">
                             <A
                                 href="/blog"
-                                class="bg-zinc-300 text-black/70 font-heading px-3 py-2 rounded-xl flex gap-2 items-center hover:bg-zinc-400 active:scale-95 transition-all duration-100"
+                                class="bg-zinc-300 text-zinc-800 font-heading px-3 py-2 rounded-xl flex gap-2 items-center hover:bg-zinc-400 active:scale-95 transition-all duration-100"
                             >
                                 <i class="bi-newspaper text-base" />
                                 Read my blog
                             </A>
                             <A
                                 href="/contact"
-                                class="bg-zinc-300 text-black/70 font-heading px-3 py-2 rounded-xl flex gap-2 items-center hover:bg-zinc-400 active:scale-95 transition-all duration-100"
+                                class="bg-zinc-300 text-zinc-800 font-heading px-3 py-2 rounded-xl flex gap-2 items-center hover:bg-zinc-400 active:scale-95 transition-all duration-100"
                             >
                                 <i class="bi-person-fill text-base" />
                                 Get in contact
@@ -136,9 +136,9 @@ export default function Home() {
             </section>
             <section class="xl:px-[20%] px-3" id="projects">
                 <div class="mt-20">
-                    <h1 class="text-2xl font-heading pt-5">
+                    <h2 class="text-2xl font-heading pt-5">
                         Projects I have worked on
-                    </h1>
+                    </h2>
                     <p class="mt-2 mb-5">
                         I have worked on a lot of things, partly for companies
                         thru internships, and partly just things I've developed
@@ -233,9 +233,9 @@ export default function Home() {
             </section>
             <section class="xl:px-[20%] p-3" id="techilike">
                 <div class="mt-20">
-                    <h1 class="text-2xl font-heading">
+                    <h2 class="text-2xl font-heading">
                         Tech I currently really enjoy
-                    </h1>
+                    </h2>
                     <p class="mt-2 mb-5">
                         I couldn't really think of another spot to put this,
                         below is a list of really cool apps, frameworks and
@@ -249,7 +249,7 @@ export default function Home() {
                                 alt="Zen Browser logo"
                                 content={
                                     <>
-                                        <span class=" italic text-zinc-500">
+                                        <span class=" italic text-zinc-700">
                                             Zen Browser is a modern web-browser,
                                             I like it for it's clean and modern
                                             interface, and "Zen Mods"; which are
@@ -258,10 +258,10 @@ export default function Home() {
                                         </span>
                                         <br />
                                         <br />
-                                        <h1 class="text-xl font-heading">
+                                        <h4 class="text-xl font-heading">
                                             I use this browser to develop this
                                             website
-                                        </h1>
+                                        </h4>
                                         It's literally the perfect browser in my
                                         opinion, don't hesitate to give it a
                                         shot, it's just that good.
@@ -274,7 +274,7 @@ export default function Home() {
                                 alt="Zed editor logo"
                                 content={
                                     <>
-                                        <span class=" italic text-zinc-500">
+                                        <span class=" italic text-zinc-700">
                                             Zed is a modern VSCode/JetBrains
                                             alternative written in Rust, the
                                             website you are viewing right now
@@ -282,14 +282,14 @@ export default function Home() {
                                         </span>
                                         <br />
                                         <br />
-                                        <h1 class="text-xl font-heading">
+                                        <h4 class="text-xl font-heading">
                                             Features
-                                        </h1>
+                                        </h4>
                                         Below I will list some features of Zed
                                         that I enjoy
                                         <br />
                                         <br />
-                                        <h3 class="font-heading">Extensions</h3>
+                                        <h5 class="font-heading">Extensions</h5>
                                         Whilst not yet as extensive as other
                                         editors like VSCode, Zed supports
                                         extensions for theming, language
@@ -301,9 +301,9 @@ export default function Home() {
                                         />
                                         <br />
                                         <br />
-                                        <h3 class="font-heading">
+                                        <h5 class="font-heading">
                                             Simplified built in terminal
-                                        </h3>
+                                        </h5>
                                         As opposed to VSCode, the integrated
                                         terminal in Zed is snappy, easy to look
                                         at, and doesn't come with too many dials
@@ -325,7 +325,7 @@ export default function Home() {
                                 alt="ElysiaJS logo"
                                 content={
                                     <>
-                                        <span class=" italic text-zinc-500">
+                                        <span class=" italic text-zinc-700">
                                             Ergonomic Framework for Humans
                                             TypeScript with End-to-End Type
                                             Safety, type integrity, and
@@ -334,10 +334,10 @@ export default function Home() {
                                         </span>
                                         <br />
                                         <br />
-                                        <h1 class="text-xl font-heading">
+                                        <h4 class="text-xl font-heading">
                                             Stupid fast TypeScript alternative
                                             to ExpressJS
-                                        </h1>
+                                        </h4>
                                         This is used for the API and serving
                                         functions of this website, it's fast
                                         enough as to where my benchmarking tools
@@ -353,16 +353,16 @@ export default function Home() {
                                 alt="Artix Linux logo"
                                 content={
                                     <>
-                                        <span class=" italic text-zinc-500">
+                                        <span class=" italic text-zinc-700">
                                             The Art of Linux Simple. Fast.
                                             Systemd-free.
                                         </span>
                                         <br />
                                         <br />
-                                        <h1 class="text-xl font-heading">
+                                        <h4 class="text-xl font-heading">
                                             I stopped distro-hopping because of
                                             Artix
-                                        </h1>
+                                        </h4>
                                         Artix is a clean and elegant solution to
                                         the everyday problem of 'my computer
                                         just isn't starting fast enough'. And
@@ -396,18 +396,18 @@ export const InterestCard: Component<{
 }> = (props) => {
     return (
         <Accordion.Item>
-            <h1>
+            <h3>
                 <Accordion.Trigger class="flex gap-2 items-center bg-white w-full p-3 rounded-xl shadow cursor-pointer hover:bg-zinc-50 transition active:scale-95 duration-100">
                     <img
                         src={props.src}
                         alt={props.alt}
                         class="size-8 object-contain border rounded-xl p-1 shadow bg-white"
                     />
-                    <h2 class="font-heading tracking-wide">
+                    <span class="font-heading tracking-wide">
                         {props.coverText}
-                    </h2>
+                    </span>
                 </Accordion.Trigger>
-            </h1>
+            </h3>
 
             {/* Add animation classes and overflow handling like component 1 */}
             <Accordion.Content class="overflow-hidden data-expanded:animate-expand data-collapsed:animate-collapse bg-white p-3 rounded-xl shadow">
