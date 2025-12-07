@@ -48,8 +48,27 @@ const app = new Elysia()
     const url = new URL(request.url);
     const pathname = url.pathname;
 
-    // Add 30-day cache for SVG files
-    if (pathname.endsWith(".svg")) {
+    // Add 30-day cache for all static assets
+    const staticAssetExtensions = [
+      ".js",
+      ".css",
+      ".svg",
+      ".png",
+      ".jpg",
+      ".jpeg",
+      ".webp",
+      ".gif",
+      ".ico",
+      ".woff",
+      ".woff2",
+      ".ttf",
+      ".eot",
+      ".otf",
+      ".mp4",
+      ".webm",
+    ];
+
+    if (staticAssetExtensions.some((ext) => pathname.endsWith(ext))) {
       set.headers["Cache-Control"] = "public, max-age=2592000, immutable";
     }
   });
