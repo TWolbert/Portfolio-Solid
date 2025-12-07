@@ -4,45 +4,47 @@ import devtools from "solid-devtools/vite";
 import { defineConfig } from "vite";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import solidPlugin from "vite-plugin-solid";
+import { resizeIcons } from "./vite-plugin-resize-icons";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig(({ command, mode, isSsrBuild }) => ({
-  plugins: [
-    devtools(),
-    solidPlugin({ ssr: isSsrBuild }),
-    ViteImageOptimizer({
-      png: {
-        quality: 80,
-      },
-      jpg: {
-        quality: 80,
-      },
-    }),
-  ],
-  server: {
-    port: 8000,
-    proxy: {
-      "/api": "http://localhost:3000",
+    plugins: [
+        devtools(),
+        solidPlugin({ ssr: isSsrBuild }),
+        ViteImageOptimizer({
+            png: {
+                quality: 80,
+            },
+            jpg: {
+                quality: 80,
+            },
+        }),
+        resizeIcons(),
+    ],
+    server: {
+        port: 8000,
+        proxy: {
+            "/api": "http://localhost:3000",
+        },
     },
-  },
-  base: "/",
-  build: {
-    target: "esnext",
-    outDir: isSsrBuild ? "api/dist/server" : "api/public",
-    sourcemap: false,
-    emptyOutDir: !isSsrBuild, // Don't clear directory during SSR build
-  },
-  resolve: {
-    alias: {
-      "@": resolve(__dirname, "./src"),
+    base: "/",
+    build: {
+        target: "esnext",
+        outDir: isSsrBuild ? "api/dist/server" : "api/public",
+        sourcemap: false,
+        emptyOutDir: !isSsrBuild, // Don't clear directory during SSR build
     },
-    conditions: isSsrBuild ? ["node"] : [],
-  },
-  ssr: isSsrBuild
-    ? {
-        noExternal: ["@solidjs/router"],
-      }
-    : undefined,
+    resolve: {
+        alias: {
+            "@": resolve(__dirname, "./src"),
+        },
+        conditions: isSsrBuild ? ["node"] : [],
+    },
+    ssr: isSsrBuild
+        ? {
+              noExternal: ["@solidjs/router"],
+          }
+        : undefined,
 }));

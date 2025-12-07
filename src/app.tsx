@@ -9,6 +9,18 @@ import { isServer, Portal } from "solid-js/web";
 import { store } from "./pages/state/store";
 
 const App: Component<{ children: JSXElement }> = (props) => {
+    const location = useLocation();
+
+    // Scroll to top on route change
+    createEffect(() => {
+        // Access location.pathname to track changes
+        location.pathname;
+        // Only run on client side
+        if (!isServer) {
+            window.scrollTo(0, 0);
+        }
+    });
+
     return (
         <div class="min-h-screen bg-zinc-100 flex flex-col">
             <nav
