@@ -17,7 +17,10 @@ const App: Component<{ children: JSXElement }> = (props) => {
         location.pathname;
         // Only run on client side
         if (!isServer) {
-            window.scrollTo(0, 0);
+            // Scroll body element (which is the scroll container)
+            document.body.scrollTo({ top: 0, behavior: 'instant' });
+            // Also scroll window as fallback
+            window.scrollTo({ top: 0, behavior: 'instant' });
         }
     });
 
